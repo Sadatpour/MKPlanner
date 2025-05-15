@@ -1,0 +1,21 @@
+{
+  "title": "Moji Planner",
+  "welcome": "Welcome to Moji Planner!",
+  "add_task_placeholder": "Add a new task...",
+  "category_work": "Work",
+  "category_personal": "Personal",
+  "category_urgent": "Urgent",
+  "category_reminder": "Reminder",
+  "delete": "Delete",
+  "done": "Done",
+  "planner": "Planner",
+  "checklist": "Checklist",
+  "pomodoro": "Pomodoro",
+  "stopwatch": "Stopwatch",
+  "settings": "Settings",
+  "pick_date": "Pick Date",
+  "quick_note": "Quick Note",
+  "quick_note_placeholder": "Write your note here...",
+  "google_calendar_sync": "Sync with Google Calendar",
+  "google_calendar_coming_soon": "This feature is coming soon."
+} 

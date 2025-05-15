@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Moji Planner</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="vazir-font.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Vazir';
+      src: url('vazir-font.woff2') format('woff2');
+      font-display: swap;
+    }
+    body { font-family: Vazir, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="main-container">
+    <header class="header-bar neumorph">
+      <div class="header-left">
+        <a href="https://sadatpour.com" target="_blank" style="display:inline-block;vertical-align:middle;">
+          <img src="../icons/icon48.png" alt="Moji Planner Logo" class="logo" />
+        </a>
+        <span id="app-title" style="font-size:2.1rem;font-weight:bold;">MKPlanner</span>
+        <a href="https://sadatpour.com" target="_blank" id="credit-link" style="text-decoration:none;">
+          <span id="credit-text" style="display:block;font-size:0.95em;color:#888;margin-top:2px;"></span>
+        </a>
+      </div>
+      <div class="header-center">
+        <div id="pomodoro-timer" class="neumorph"></div>
+      </div>
+      <div class="header-right">
+        <select id="theme-switch" class="neumorph-input">
+          <option value="light">روشن</option>
+          <option value="dark">تاریک</option>
+        </select>
+        <select id="lang-switch" class="neumorph-input">
+          <option value="fa">فارسی</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </header>
+    <main class="dashboard-grid custom-layout">
+      <!-- Left column: Checklist, Notes -->
+      <section class="checklist-section neumorph left-col">
+        <div>
+          <div class="section-title">چک‌لیست</div>
+        <ul id="checklist"></ul>
+        </div>
+        <form id="add-checklist-form">
+          <input type="text" id="checklist-input" class="neumorph-input" placeholder="کار جدید..." />
+          <button type="submit" class="neumorph-btn">+</button>
+        </form>
+      </section>
+      
+      <!-- Center column: Bookmarks, Image Slider -->
+      <section class="bookmarks-section neumorph center-col">
+        <div class="section-title">بوکمارک‌ها</div>
+        <div id="bookmarks-list" class="bookmarks-list"></div>
+        <button id="add-bookmark-btn" class="neumorph-btn">افزودن بوکمارک</button>
+      </section>
+      <div class="score-row">
+        <section class="score-section neumorph">
+          <div class="section-title">بیتی از شاهنامه</div>
+        </section>
+        <section class="special-score-section neumorph">
+          <div class="section-title">مدیریت ارتباطات</div>
+          <form id="add-contact-form" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="contact-name" class="neumorph-input" placeholder="نام" required />
+              <input type="text" id="contact-phone" class="neumorph-input" placeholder="شماره تماس" required />
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <input type="text" id="contact-unit" class="neumorph-input" placeholder="واحد" required />
+              <button type="submit" class="neumorph-btn">افزودن مخاطب</button>
+            </div>
+          </form>
+          <div id="contacts-list" style="max-height:220px;overflow-y:auto;"></div>
+        </section>
+      </div>
+      <!-- اسلایدر تصاویر حذف شد -->
+      <!-- Right column: Calendar, Projects, Targets -->
+      <section class="calendar-section neumorph right-col">
+        <div id="header-date-display" class="neumorph"></div>
+        <div id="calendar-date"></div>
+      </section>
+      <section class="projects-section neumorph right-col">
+        <div class="section-title">پروژه‌ها</div>
+        <ul id="project-list"></ul>
+        <form id="add-project-form">
+          <input type="text" id="project-input" class="neumorph-input" placeholder="پروژه جدید..." />
+          <button type="submit" class="neumorph-btn">+</button>
+        </form>
+      </section>
+      <section class="targets-section neumorph right-col">
+        <div class="section-title">اهداف</div>
+        <ul id="target-list"></ul>
+        <form id="add-target-form">
+          <input type="text" id="target-input" class="neumorph-input" placeholder="هدف جدید..." />
+          <button type="submit" class="neumorph-btn">+</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html> 

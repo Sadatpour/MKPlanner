@@ -1,0 +1,19 @@
+#contacts-list {
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bdbdbd #f3f3f3;
+}
+#contacts-list::-webkit-scrollbar {
+  width: 7px;
+  background: #f3f3f3;
+  border-radius: 8px;
+}
+#contacts-list::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px #e0e0e0;
+}
+#contacts-list::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+} 

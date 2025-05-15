@@ -1,0 +1,21 @@
+{
+  "title": "موجی پلنر",
+  "welcome": "به موجی پلنر خوش آمدید!",
+  "add_task_placeholder": "افزودن وظیفه جدید...",
+  "category_work": "کار",
+  "category_personal": "شخصی",
+  "category_urgent": "فوری",
+  "category_reminder": "یادآوری",
+  "delete": "حذف",
+  "done": "تکمیل",
+  "planner": "برنامه‌ریز",
+  "checklist": "چک‌لیست",
+  "pomodoro": "پومودورو",
+  "stopwatch": "کرنومتر",
+  "settings": "تنظیمات",
+  "pick_date": "انتخاب تاریخ",
+  "quick_note": "یادداشت سریع",
+  "quick_note_placeholder": "یادداشت خود را اینجا بنویسید...",
+  "google_calendar_sync": "همگام‌سازی با Google Calendar",
+  "google_calendar_coming_soon": "این قابلیت به‌زودی فعال می‌شود."
+} 

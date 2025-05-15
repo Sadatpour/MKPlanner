@@ -1,0 +1,782 @@
+[
+  {
+    "id": 1,
+    "verse": "به نام خداوند جان و خرد\nکزین برتر اندیشه برنگذرد",
+    "meaning": "به نام خداوند جان و خرد که هیچ اندیشه‌ای از او برتر نیست.",
+    "meaning_en": "In the name of God, the Lord of life and wisdom, above whom no thought can reach."
+  },
+  {
+    "id": 2,
+    "verse": "خداوند نام و خداوند جای\nخداوند روزی‌ده رهنمای",
+    "meaning": "خداوندی که نام و مکان دارد و روزی‌ده و راهنماست.",
+    "meaning_en": "God, who has a name and a place, who gives sustenance and guides."
+  },
+  {
+    "id": 3,
+    "verse": "خداوند کیوان و گردان سپهر\nفروزندهٔ ماه و ناهید و مهر",
+    "meaning": "خداوند آفریننده کیوان و آسمان گردان و فروزنده ماه و ناهید و خورشید است.",
+    "meaning_en": "God, creator of Saturn and the turning sky, who lights the moon, Venus, and the sun."
+  },
+  {
+    "id": 4,
+    "verse": "ز نام و نشان و گمان برتر است\nنگارندهٔ بر شده پیکر است",
+    "meaning": "او از نام و نشان و گمان برتر است و آفریننده همه پیکرهای برآمده است.",
+    "meaning_en": "He is beyond name, sign, and thought, the creator of all forms."
+  },
+  {
+    "id": 5,
+    "verse": "به بینندگان آفریننده را\nنبینی مرنجان دو بیننده را",
+    "meaning": "آفریننده را با چشم نمی‌توان دید، پس چشم خود را برای دیدنش نیازار.",
+    "meaning_en": "The creator cannot be seen by the eyes, so do not trouble your eyes to see Him."
+  },
+  {
+    "id": 6,
+    "verse": "نیابد بدو نیز اندیشه راه\nکه او برتر از نام و از جایگاه",
+    "meaning": "هیچ اندیشه‌ای به او راه نمی‌یابد، زیرا او برتر از نام و مکان است.",
+    "meaning_en": "No thought can reach Him, for He is above name and place."
+  },
+  {
+    "id": 7,
+    "verse": "سخن هر چه زین گوهران بگذرد\nنیابد بدو راه جان و خرد",
+    "meaning": "هر سخنی که از این گوهرها فراتر رود، جان و خرد به او راه نمی‌یابد.",
+    "meaning_en": "No words or wisdom can reach beyond these truths to Him."
+  },
+  {
+    "id": 8,
+    "verse": "خرد گر سخن برگزیند همی\nهمان را گزیند که بیند همی",
+    "meaning": "خرد اگر بخواهد سخنی را برگزیند، همان را برمی‌گزیند که می‌تواند ببیند.",
+    "meaning_en": "Wisdom chooses only what it can see and understand."
+  },
+  {
+    "id": 9,
+    "verse": "ستودن نداند کس او را چو هست\nمیان بندگی را ببایدت بست",
+    "meaning": "هیچ‌کس نمی‌تواند او را آن‌گونه که هست بستاید، پس باید بندگی او را پیشه کنی.",
+    "meaning_en": "No one can truly praise Him as He is, so you should serve Him."
+  },
+  {
+    "id": 10,
+    "verse": "خرد را و جان را همی سنجد اوی\nدگر آفرین را ندانند اوی",
+    "meaning": "اوست که خرد و جان را می‌سنجد و دیگران آفرینش او را نمی‌دانند.",
+    "meaning_en": "He measures wisdom and soul, and others do not know His creation."
+  },
+  {
+    "id": 11,
+    "verse": "توانا بود هر که دانا بود\nز دانش دل پیر برنا بود",
+    "meaning": "هر که دانا باشد تواناست و دانش دل پیر را جوان می‌کند.",
+    "meaning_en": "Whoever is wise is powerful, and knowledge makes an old heart young."
+  },
+  {
+    "id": 12,
+    "verse": "از اوی است برتر سخن هیچ نیست\nتو گویی همه پیش او هیچ نیست",
+    "meaning": "سخنی برتر از سخن او نیست و همه چیز در برابر او هیچ است.",
+    "meaning_en": "There is no word greater than His, and everything is nothing before Him."
+  },
+  {
+    "id": 13,
+    "verse": "پرستنده باشی و جوینده راه\nبه ژرفی مبر راه بر داد و جاه",
+    "meaning": "باید پرستنده و جوینده راه باشی و در راه داد و جاه ژرف‌نگر نباشی.",
+    "meaning_en": "Be a servant and seeker of the path, and do not go too deep into power and position."
+  },
+  {
+    "id": 14,
+    "verse": "خرد چشم جان است چون بنگری\nتو بی چشم شادان جهان نسپری",
+    "meaning": "خرد چشم جان است و بدون آن نمی‌توانی شادمانه در جهان زندگی کنی.",
+    "meaning_en": "Wisdom is the eye of the soul; without it, you cannot live happily in the world."
+  },
+  {
+    "id": 15,
+    "verse": "به گفتار دانندگان راه جوی\nبه گیتی بپوی و به هر کس بگوی",
+    "meaning": "به سخن دانایان گوش کن و در جهان جست‌وجو کن و آن را به دیگران بگو.",
+    "meaning_en": "Listen to the wise, seek in the world, and share what you learn with others."
+  },
+  {
+    "id": 16,
+    "verse": "چو خواهی که یابی ز هر بد رها\nسر اندر نیاری به دام بلا",
+    "meaning": "اگر می‌خواهی از هر بدی رها شوی، خود را گرفتار بلا نکن.",
+    "meaning_en": "If you want to be free from all evil, do not fall into trouble."
+  },
+  {
+    "id": 17,
+    "verse": "به یزدان هر آن کس که دارد امید\nز دوزخ نیابد به دل ترس و بیم",
+    "meaning": "هر کس به خداوند امید داشته باشد، از دوزخ نمی‌ترسد.",
+    "meaning_en": "Whoever has hope in God will not fear hell in their heart."
+  },
+  {
+    "id": 18,
+    "verse": "چو شادی بکاهد بکاهد غمت\nچو شادی فزاید فزاید غمت",
+    "meaning": "هرگاه شادی کم شود، غم نیز کم می‌شود و هرگاه شادی زیاد شود، غم نیز زیاد می‌شود.",
+    "meaning_en": "When joy decreases, your sorrow will also decrease; when joy increases, so does your sorrow."
+  },
+  {
+    "id": 19,
+    "verse": "به رنج اندر آری دل خویش را\nبه شادی سپاری همه پیش را",
+    "meaning": "اگر دل خود را به رنج بسپاری، شادی را از دست می‌دهی.",
+    "meaning_en": "If you give your heart to sorrow, you will lose your happiness."
+  },
+  {
+    "id": 20,
+    "verse": "چو خواهی که نامت بود جاودان\nمکن بد به کس گر توانی توان",
+    "meaning": "اگر می‌خواهی نامت جاودان بماند، تا می‌توانی به کسی بدی نکن.",
+    "meaning_en": "If you want your name to last forever, do not harm anyone if you can avoid it."
+  },
+  {
+    "id": 21,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 22,
+    "verse": "چو خواهی که یابی ز هر بد رها\nسر اندر نیاری به دام بلا",
+    "meaning": "اگر می‌خواهی از هر بدی رها شوی، خود را گرفتار بلا نکن.",
+    "meaning_en": "If you want to be free from all evil, do not fall into trouble."
+  },
+  {
+    "id": 23,
+    "verse": "به گیتی به از راستی پیشه نیست\nز کژی و زشتی به اندیشه نیست",
+    "meaning": "در جهان هیچ پیشه‌ای بهتر از راستی نیست و از کژی و زشتی باید دوری کرد.",
+    "meaning_en": "There is no better way in the world than honesty, and you should avoid crookedness and ugliness."
+  },
+  {
+    "id": 24,
+    "verse": "چو خواهی که نامت بود جاودان\nمکن بد به کس گر توانی توان",
+    "meaning": "اگر می‌خواهی نامت جاودان بماند، تا می‌توانی به کسی بدی نکن.",
+    "meaning_en": "If you want your name to last forever, do not harm anyone if you can avoid it."
+  },
+  {
+    "id": 25,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 26,
+    "verse": "چو شادی بکاهد بکاهد غمت\nچو شادی فزاید فزاید غمت",
+    "meaning": "هرگاه شادی کم شود، غم نیز کم می‌شود و هرگاه شادی زیاد شود، غم نیز زیاد می‌شود.",
+    "meaning_en": "When joy decreases, your sorrow will also decrease; when joy increases, so does your sorrow."
+  },
+  {
+    "id": 27,
+    "verse": "به رنج اندر آری دل خویش را\nبه شادی سپاری همه پیش را",
+    "meaning": "اگر دل خود را به رنج بسپاری، شادی را از دست می‌دهی.",
+    "meaning_en": "If you give your heart to sorrow, you will lose your happiness."
+  },
+  {
+    "id": 28,
+    "verse": "چو خواهی که نامت بود جاودان\nمکن بد به کس گر توانی توان",
+    "meaning": "اگر می‌خواهی نامت جاودان بماند، تا می‌توانی به کسی بدی نکن.",
+    "meaning_en": "If you want your name to last forever, do not harm anyone if you can avoid it."
+  },
+  {
+    "id": 29,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 30,
+    "verse": "چو شادی بکاهد بکاهد غمت\nچو شادی فزاید فزاید غمت",
+    "meaning": "هرگاه شادی کم شود، غم نیز کم می‌شود و هرگاه شادی زیاد شود، غم نیز زیاد می‌شود.",
+    "meaning_en": "When joy decreases, your sorrow will also decrease; when joy increases, so does your sorrow."
+  },
+  {
+    "id": 31,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 32,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 33,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 34,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 35,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 36,
+    "verse": "ز بد دور باش و به نیکی گرای\nکه نیکی بود هم‌ره و هم‌سرای",
+    "meaning": "از بدی دوری کن و به نیکی گرایش داشته باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Stay away from evil and turn to goodness, for goodness is always with you."
+  },
+  {
+    "id": 37,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 38,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 39,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 40,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 41,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 42,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 43,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 44,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 45,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 46,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 47,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 48,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 49,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 50,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 51,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 52,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 53,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 54,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 55,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 56,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 57,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 58,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 59,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 60,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 61,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 62,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 63,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 64,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 65,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 66,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 67,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 68,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 69,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 70,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 71,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 72,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 73,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 74,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 75,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 76,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 77,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 78,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 79,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 80,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 81,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 82,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 83,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 84,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 85,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 86,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 87,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 88,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 89,
+    "verse": "به دانش گرای و به نیکی بکوش\nکه دانش بود هم‌ره و هم‌پوش",
+    "meaning": "به دانش گرایش داشته باش و در نیکی کوشا باش، زیرا دانش همیشه همراه توست.",
+    "meaning_en": "Turn to knowledge and strive for goodness, for knowledge is always with you."
+  },
+  {
+    "id": 90,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 91,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 92,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 93,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 94,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 95,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 96,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 97,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 98,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 99,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 100,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 101,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 102,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 103,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 104,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 105,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 106,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 107,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 108,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 109,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 110,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 111,
+    "verse": "به نیکی گرای و میازار کس\nره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 112,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 113,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 114,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 115,
+    "verse": "به گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 116,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 117,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 118,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 119,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 120,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  },
+  {
+    "id": 121,
+    "verse": "جهان سر به سر حکمت و عبرت است\nچرا بهره ما همه غفلت است",
+    "meaning": "تمام جهان پر از حکمت و عبرت است، اما چرا بهره ما فقط غفلت است؟",
+    "meaning_en": "The whole world is full of wisdom and lessons, but why is our share only neglect?"
+  },
+  {
+    "id": 122,
+    "verse": "به گیتی به از راستی پیشه نیست\nز کژی و زشتی به اندیشه نیست",
+    "meaning": "در جهان هیچ پیشه‌ای بهتر از راستی نیست و از کژی و زشتی باید دوری کرد.",
+    "meaning_en": "There is no better way in the world than honesty, and you should avoid crookedness and ugliness."
+  },
+  {
+    "id": 123,
+    "verse": "به نیکی گرای و میازار کس\nکه ره رستگاری همین است و بس",
+    "meaning": "به نیکی گرایش داشته باش و کسی را میازار، راه رستگاری همین است.",
+    "meaning_en": "Be kind and do not hurt anyone; this is the way to salvation."
+  },
+  {
+    "id": 124,
+    "verse": "ز شادی مکن یاد اندوه و رنج\nکه شادی به دل به ز اندوه و گنج",
+    "meaning": "در شادی به یاد اندوه و رنج مباش، زیرا شادی در دل بهتر از اندوه و گنج است.",
+    "meaning_en": "Do not remember sorrow and pain in times of joy, for joy in the heart is better than sorrow and treasure."
+  },
+  {
+    "id": 125,
+    "verse": "به یزدان گرای و به نیکی بکوش\nکه نیکی بود هم‌ره و هم‌پوش",
+    "meaning": "به سوی خداوند گرایش داشته باش و در نیکی کوشا باش، زیرا نیکی همیشه همراه توست.",
+    "meaning_en": "Turn to God and strive for goodness, for goodness is always with you."
+  },
+  {
+    "id": 126,
+    "verse": "دل روشن و جان پاکیزه دار\nز بد دور باش و به نیکی گذار",
+    "meaning": "دل خود را روشن و جانت را پاکیزه نگه دار و از بدی دوری کن و به نیکی بگذر.",
+    "meaning_en": "Keep your heart bright and your soul pure; stay away from evil and live with goodness."
+  },
+  {
+    "id": 127,
+    "verse": "به کردار نیکو گشاینده باش\nز بد دور و با نیک پیونده باش",
+    "meaning": "در کردار نیکو پیشگام باش و از بدی دوری کن و با نیکان پیوند داشته باش.",
+    "meaning_en": "Be a leader in good deeds, avoid evil, and connect with good people."
+  },
+  {
+    "id": 128,
+    "verse": "ز گفتار نیکو مکن هیچ باز\nکه نیکی بود هم‌ره و هم‌ساز",
+    "meaning": "از گفتار نیکو روی مگردان، زیرا نیکی همیشه همراه و یاور توست.",
+    "meaning_en": "Do not turn away from kind words, for goodness is always your companion and helper."
+  },
+  {
+    "id": 129,
+    "verse": "به دانش گرای و به نیکی بکوش\nکه دانش بود هم‌ره و هم‌پوش",
+    "meaning": "به دانش گرایش داشته باش و در نیکی کوشا باش، زیرا دانش همیشه همراه توست.",
+    "meaning_en": "Turn to knowledge and strive for goodness, for knowledge is always with you."
+  },
+  {
+    "id": 130,
+    "verse": "ز دانش به گیتی برافراز سر\nکه دانش بود زینت تاجور",
+    "meaning": "در جهان با دانش سر بلند کن، زیرا دانش زینت پادشاهان است.",
+    "meaning_en": "Hold your head high with knowledge in the world, for knowledge is the crown of kings."
+  }
+]
