@@ -17,7 +17,6 @@
     "service_worker": "background.js"
   },
   "permissions": [
-    "identity",
     "storage",
     "notifications"
   ],
@@ -27,16 +26,7 @@
   "web_accessible_resources": [
     {
       "resources": ["js/shahnameh_verses.json"],
-      "matches": ["<all_urls>"]
+      "matches": ["chrome-extension://*/*"]
     }
-  ],
-  "oauth2": {
-    "client_id": "737594070946-qej7mfb6bh9klq0sjgl0p8e5omt4o573.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/calendar"
-    ]
-  },
-  "host_permissions": [
-    "https://www.googleapis.com/"
   ]
 } 

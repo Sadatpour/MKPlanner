@@ -328,6 +328,11 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 body, html {
   scrollbar-width: thin;
 }
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
 
 @media (max-width: 1200px) {
   #main-container {
