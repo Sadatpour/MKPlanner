@@ -30,25 +30,31 @@
         <div id="pomodoro-timer" class="neumorph"></div>
       </div>
       <div class="header-right">
-        <select id="theme-switch" class="neumorph-input">
+        <select id="theme-switch" class="theme-switch-btn neumorph-btn">
           <option value="light">روشن</option>
           <option value="dark">تاریک</option>
         </select>
-        <select id="lang-switch" class="neumorph-input">
+        <select id="lang-switch" class="lang-switch-btn neumorph-btn">
           <option value="fa">فارسی</option>
           <option value="en">English</option>
         </select>
+        <select id="backup-switch" class="backup-switch-btn neumorph-btn">
+          <option value="none" selected disabled>پشتیبان‌گیری</option>
+          <option value="export">خروجی گرفتن</option>
+          <option value="import">ورود اطلاعات</option>
+        </select>
+        <input type="file" id="import-file" accept=".json" style="display:none;" />
       </div>
     </header>
     <main class="dashboard-grid custom-layout">
       <!-- Left column: Checklist, Notes -->
       <section class="checklist-section neumorph left-col">
         <div>
-          <div class="section-title">چک‌لیست</div>
-        <ul id="checklist"></ul>
+          <div class="section-title">چک‌لیست پروژه‌ای</div>
+          <ul id="project-checklist"></ul>
         </div>
-        <form id="add-checklist-form">
-          <input type="text" id="checklist-input" class="neumorph-input" placeholder="کار جدید..." />
+        <form id="add-project-form-checklist" style="display:flex;gap:8px;margin-top:8px;">
+          <input type="text" id="project-name-input" class="neumorph-input" placeholder="لیست جدید ..." required />
           <button type="submit" class="neumorph-btn">+</button>
         </form>
       </section>

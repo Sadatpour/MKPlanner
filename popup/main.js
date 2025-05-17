@@ -90,6 +90,32 @@ function applyLang(lang) {
     // Contact form button
     const contactFormBtn = document.querySelector('#add-contact-form button[type="submit"]');
     if (contactFormBtn) contactFormBtn.textContent = 'Add Contact';
+    // تغییر عنوان چک‌لیست پروژه‌ای
+    const checklistTitle = document.querySelector('.checklist-section .section-title');
+    if (checklistTitle) checklistTitle.innerText = 'Project Checklist';
+    // تغییر placeholder ورودی افزودن لیست
+    const projectNameInput = document.getElementById('project-name-input');
+    if (projectNameInput) projectNameInput.placeholder = 'New list ...';
+    // تغییر متن دکمه افزودن لیست
+    const addProjectBtn = document.querySelector('#add-project-form-checklist button[type="submit"]');
+    if (addProjectBtn) addProjectBtn.textContent = '+ New Task';
+    // تغییر placeholder و دکمه افزودن بخش جدید در چک‌لیست پروژه‌ای (زیرگروه)
+    const sectionInputs = document.querySelectorAll('.add-section-form input');
+    sectionInputs.forEach(input => { input.placeholder = 'New section (e.g. Daily Tasks)...'; });
+    const sectionBtns = document.querySelectorAll('.add-section-form button[type="submit"]');
+    sectionBtns.forEach(btn => { btn.textContent = '+'; });
+    // تغییر placeholder ورودی تسک جدید و دکمه افزودن تسک در زیرگروه‌ها (انگلیسی)
+    const addTaskInputs = document.querySelectorAll('.add-task-form input');
+    addTaskInputs.forEach(input => { input.placeholder = 'New task ...'; });
+    const addTaskBtns = document.querySelectorAll('.add-task-form button[type="submit"]');
+    addTaskBtns.forEach(btn => { btn.textContent = '+'; });
+    // --- Backup Dropdown Localization ---
+    const backupDropdownBtn = document.getElementById('backup-dropdown-btn');
+    const exportBtn = document.getElementById('export-btn');
+    const importBtn = document.getElementById('import-btn');
+    if (backupDropdownBtn) backupDropdownBtn.querySelector('span').textContent = 'Backup';
+    if (exportBtn) exportBtn.textContent = 'Export';
+    if (importBtn) importBtn.textContent = 'Import';
   } else {
     allTitles.forEach((el, i) => { el.innerText = titles[0].fa[i] || el.innerText; });
     const pomoTitle = document.querySelector('#pomodoro-timer h3');
@@ -133,6 +159,20 @@ function applyLang(lang) {
     // Contact form button
     const contactFormBtn = document.querySelector('#add-contact-form button[type="submit"]');
     if (contactFormBtn) contactFormBtn.textContent = 'افزودن مخاطب';
+    // --- Backup Dropdown Localization ---
+    const backupDropdownBtn = document.getElementById('backup-dropdown-btn');
+    const exportBtn = document.getElementById('export-btn');
+    const importBtn = document.getElementById('import-btn');
+    if (backupDropdownBtn) backupDropdownBtn.querySelector('span').textContent = 'پشتیبان‌گیری';
+    if (exportBtn) exportBtn.textContent = 'خروجی گرفتن';
+    if (importBtn) importBtn.textContent = 'ورود اطلاعات';
+  }
+  // --- Backup Switch Localization in applyLang ---
+  const backupSwitch = document.getElementById('backup-switch');
+  if (backupSwitch) {
+    backupSwitch.options[0].text = lang === 'fa' ? 'پشتیبان‌گیری' : 'Backup';
+    backupSwitch.options[1].text = lang === 'fa' ? 'خروجی گرفتن' : 'Export';
+    backupSwitch.options[2].text = lang === 'fa' ? 'ورود اطلاعات' : 'Import';
   }
 }
 chrome.storage.sync.get(['theme', 'lang'], (res) => {
@@ -164,18 +204,37 @@ if (langSwitch) langSwitch.onchange = () => {
 function renderHeaderDateDisplay() {
   const el = document.getElementById('header-date-display');
   if (!el) return;
-  // مقدار تاریخ امروز را به صورت دستی برای تست قرار بده
-  const jalaliStr = '1404/02/25';
-  const today = todayGregorian();
-  const miladiStr = `${today.gy}/${today.gm}/${today.gd}`;
+  const d = new Date();
+  // تاریخ شمسی با اعداد لاتین
+  const jalaliStr = d.toLocaleDateString('fa-IR-u-nu-latn', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  // استخراج شماره ماه شمسی
+  const jalaliParts = jalaliStr.split('/');
+  const jalaliMonth = parseInt(jalaliParts[1], 10);
+  // نام ماه فارسی
+  const jalaliMonthNames = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+  const jalaliMonthName = jalaliMonthNames[jalaliMonth - 1] || '';
+  // تاریخ میلادی
+  const miladiStr = d.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  // استخراج شماره ماه میلادی
+  const miladiParts = miladiStr.split('-');
+  const miladiMonth = parseInt(miladiParts[1], 10);
+  // نام ماه میلادی
+  const miladiMonthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const miladiMonthName = miladiMonthNames[miladiMonth - 1] || '';
   el.innerHTML = `
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-direction:column;align-items:flex-start;">
+      <div style="display:flex;align-items:center;gap:8px;">
       <span style="font-size:1.2em;">📅</span>
       <span>${jalaliStr}</span>
     </div>
+      <span style="font-size:12px;color:#888;margin-top:0;margin-right:28px;">${jalaliMonthName}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-direction:column;align-items:flex-start;">
     <div style="display:flex;align-items:center;gap:8px;">
       <span style="font-size:1.2em;">🌐</span>
       <span>${miladiStr}</span>
+      </div>
+      <span style="font-size:12px;color:#888;margin-top:0;margin-right:28px;">${miladiMonthName}</span>
     </div>
   `;
 }
@@ -337,132 +396,252 @@ if (addBtn) addBtn.onclick = () => {
   };
 };
 
-// --- Checklist Section (مقاوم و بدون باگ) ---
-function renderChecklist() {
-  const list = document.getElementById('checklist');
-  const errorDiv = document.getElementById('checklist-error');
-  list.innerHTML = '';
-  errorDiv.textContent = '';
-  try {
+// --- Project Checklist Section (گروه‌بندی پروژه‌ای با بخش) ---
+function getDefaultChecklist() {
+  return [];
+}
+
+function saveProjectChecklist(data, callback) {
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-      chrome.storage.sync.get(['checklist'], (res) => {
-        if (chrome.runtime && chrome.runtime.lastError) {
-          errorDiv.textContent = 'خطا در خواندن داده‌ها از کروم: ' + chrome.runtime.lastError.message;
-          renderChecklistLocal();
-          return;
-        }
-        const items = res.checklist || [];
-        renderChecklistItems(items, list, errorDiv, true);
-      });
-    } else {
-      renderChecklistLocal();
-    }
-  } catch (err) {
-    errorDiv.textContent = 'خطا: ' + err.message;
-    renderChecklistLocal();
+    chrome.storage.sync.set({ projectChecklist: data }, callback);
+  } else {
+    localStorage.setItem('projectChecklist', JSON.stringify(data));
+    if (callback) callback();
   }
 }
-function renderChecklistLocal() {
-  const list = document.getElementById('checklist');
-  const errorDiv = document.getElementById('checklist-error');
-  let items = [];
-  try {
-    items = JSON.parse(localStorage.getItem('checklist') || '[]');
-  } catch (e) { items = []; }
-  errorDiv.textContent = 'ذخیره‌سازی لوکال فعال است.';
-  renderChecklistItems(items, list, errorDiv, false);
+function loadProjectChecklist(callback) {
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+    chrome.storage.sync.get(['projectChecklist'], (res) => {
+      callback(res.projectChecklist || getDefaultChecklist());
+      });
+    } else {
+    let data = [];
+    try { data = JSON.parse(localStorage.getItem('projectChecklist') || '[]'); } catch (e) { data = []; }
+    callback(data);
 }
-function renderChecklistItems(items, list, errorDiv, useChrome) {
+}
+
+function renderProjectChecklist() {
+  const list = document.getElementById('project-checklist');
   list.innerHTML = '';
-  if (items.length === 0) {
+  loadProjectChecklist((projects) => {
+    if (!projects.length) {
     const empty = document.createElement('li');
     empty.style.color = '#aaa';
-    empty.textContent = 'هنوز آیتمی ثبت نشده است.';
+      empty.textContent = 'هنوز پروژه‌ای ثبت نشده است.';
     list.appendChild(empty);
     return;
   }
-  items.forEach((item, i) => {
-    const li = document.createElement('li');
-    li.style.display = 'flex';
-    li.style.alignItems = 'center';
+    projects.forEach((project, pi) => {
+      const projectLi = document.createElement('li');
+      projectLi.className = 'project-accordion';
+      // Project header
+      const projectHeader = document.createElement('div');
+      projectHeader.className = 'project-header';
+      // آیکون‌ها در یک div جداگانه (پروژه)
+      const iconDiv = document.createElement('div');
+      iconDiv.style.display = 'flex';
+      iconDiv.style.alignItems = 'center';
+      // آیکون دراپ‌داون مینیمال (▷/▽)
+      const toggleBtn = document.createElement('button');
+      toggleBtn.textContent = project._open ? '▽' : '▷';
+      toggleBtn.className = 'toggle-btn';
+      toggleBtn.style.marginLeft = '6px';
+      toggleBtn.onclick = (e) => {
+        e.stopPropagation();
+        project._open = !project._open;
+        saveProjectChecklist(projects, renderProjectChecklist);
+      };
+      // آیکون حذف
+      const delProjectBtn = document.createElement('button');
+      delProjectBtn.textContent = '🗑️';
+      delProjectBtn.className = 'delete-btn';
+      delProjectBtn.onclick = () => {
+        projects.splice(pi, 1);
+        saveProjectChecklist(projects, renderProjectChecklist);
+      };
+      // اضافه کردن آیکون‌ها به div (اول حذف، بعد دراپ‌داون سمت چپ)
+      iconDiv.appendChild(delProjectBtn);
+      iconDiv.appendChild(toggleBtn);
+      // ساختار هدر: [عنوان پروژه][آیکون‌ها]
+      const projectTitleSpan = document.createElement('span');
+      projectTitleSpan.textContent = project.projectName;
+      projectHeader.appendChild(projectTitleSpan);
+      projectHeader.appendChild(iconDiv);
+      // کلیک روی کل هدر (به جز حذف) پروژه را باز/بسته کند
+      projectHeader.onclick = (e) => {
+        if (e.target === delProjectBtn) return;
+        e.stopPropagation();
+        project._open = !project._open;
+        saveProjectChecklist(projects, renderProjectChecklist);
+      };
+      projectLi.appendChild(projectHeader);
+      // Project body (sections)
+      if (project._open) {
+        const sectionList = document.createElement('ul');
+        sectionList.className = 'section-list';
+        if (!project.sections || !project.sections.length) {
+          const emptySection = document.createElement('li');
+          emptySection.style.color = '#bbb';
+          emptySection.textContent = 'هنوز بخشی ثبت نشده است.';
+          sectionList.appendChild(emptySection);
+        } else {
+          project.sections.forEach((section, si) => {
+            const sectionLi = document.createElement('li');
+            sectionLi.className = 'section-accordion';
+            // Section header
+            const sectionHeader = document.createElement('div');
+            sectionHeader.className = 'section-header';
+            // آیکون‌ها در یک div جداگانه (بخش)
+            const sectionIconDiv = document.createElement('div');
+            sectionIconDiv.style.display = 'flex';
+            sectionIconDiv.style.alignItems = 'center';
+            // Toggle section
+            const toggleSectionBtn = document.createElement('button');
+            toggleSectionBtn.textContent = section._open ? '▽' : '▷';
+            toggleSectionBtn.className = 'toggle-btn';
+            toggleSectionBtn.style.marginLeft = '6px';
+            toggleSectionBtn.onclick = (e) => {
+              e.stopPropagation();
+              section._open = !section._open;
+              saveProjectChecklist(projects, renderProjectChecklist);
+            };
+            // Delete section
+            const delSectionBtn = document.createElement('button');
+            delSectionBtn.textContent = '🗑️';
+            delSectionBtn.className = 'delete-btn';
+            delSectionBtn.onclick = () => {
+              project.sections.splice(si, 1);
+              saveProjectChecklist(projects, renderProjectChecklist);
+            };
+            // اضافه کردن آیکون‌ها به div (اول حذف، بعد دراپ‌داون سمت چپ)
+            sectionIconDiv.appendChild(delSectionBtn);
+            sectionIconDiv.appendChild(toggleSectionBtn);
+            // ساختار هدر: [عنوان بخش][آیکون‌ها]
+            const sectionTitleSpan = document.createElement('span');
+            sectionTitleSpan.textContent = section.sectionName;
+            sectionHeader.appendChild(sectionTitleSpan);
+            sectionHeader.appendChild(sectionIconDiv);
+            // کلیک روی کل هدر (به جز حذف) بخش را باز/بسته کند
+            sectionHeader.onclick = (e) => {
+              if (e.target === delSectionBtn) return;
+              e.stopPropagation();
+              section._open = !section._open;
+              saveProjectChecklist(projects, renderProjectChecklist);
+            };
+            sectionLi.appendChild(sectionHeader);
+            // Section body (tasks)
+            if (section._open) {
+              const taskList = document.createElement('ul');
+              taskList.className = 'task-list';
+              if (!section.tasks || !section.tasks.length) {
+                const emptyTask = document.createElement('li');
+                emptyTask.style.color = '#ccc';
+                emptyTask.textContent = 'هنوز کاری ثبت نشده است.';
+                taskList.appendChild(emptyTask);
+              } else {
+                section.tasks.forEach((task, ti) => {
+                  const taskLi = document.createElement('li');
+                  taskLi.className = 'task-item';
     const cb = document.createElement('input');
     cb.type = 'checkbox';
-    cb.checked = item.done;
+                  cb.checked = task.done;
     cb.onchange = () => {
-      items[i].done = cb.checked;
-      saveChecklist(items, errorDiv, useChrome);
+                    section.tasks[ti].done = cb.checked;
+                    saveProjectChecklist(projects, renderProjectChecklist);
     };
     const span = document.createElement('span');
-    span.textContent = item.text;
-    span.style.margin = '0 8px';
-    if (item.done) span.style.textDecoration = 'line-through';
-    const del = document.createElement('button');
-    del.className = 'delete-btn';
-    del.textContent = '🗑️';
-    del.onclick = (e) => {
-      e.preventDefault();
-      items.splice(i, 1);
-      saveChecklist(items, errorDiv, useChrome);
+                  span.textContent = task.text;
+                  if (task.done) span.style.textDecoration = 'line-through';
+                  // Delete task
+                  const delTaskBtn = document.createElement('button');
+                  delTaskBtn.textContent = '🗑️';
+                  delTaskBtn.className = 'delete-btn';
+                  delTaskBtn.onclick = () => {
+                    section.tasks.splice(ti, 1);
+                    saveProjectChecklist(projects, renderProjectChecklist);
     };
-    li.appendChild(cb);
-    li.appendChild(span);
-    li.appendChild(del);
-    list.appendChild(li);
+                  taskLi.appendChild(cb);
+                  taskLi.appendChild(span);
+                  taskLi.appendChild(delTaskBtn);
+                  taskList.appendChild(taskLi);
   });
 }
-function saveChecklist(items, errorDiv, useChrome) {
-  try {
-    if (useChrome && typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-      chrome.storage.sync.set({ checklist: items }, () => {
-        if (chrome.runtime && chrome.runtime.lastError) {
-          errorDiv.textContent = 'خطا در ذخیره‌سازی کروم: ' + chrome.runtime.lastError.message;
-        } else {
-          renderChecklist();
+              // Add task form
+              const addTaskForm = document.createElement('form');
+              addTaskForm.className = 'add-task-form';
+              addTaskForm.onsubmit = (e) => {
+                e.preventDefault();
+                const input = addTaskForm.querySelector('input');
+                const text = input.value.trim();
+                if (!text) return;
+                section.tasks.push({ text, done: false });
+                input.value = '';
+                saveProjectChecklist(projects, renderProjectChecklist);
+              };
+              const taskInput = document.createElement('input');
+              taskInput.type = 'text';
+              taskInput.placeholder = 'کار جدید...';
+              taskInput.className = 'neumorph-input';
+              addTaskForm.appendChild(taskInput);
+              const addBtn = document.createElement('button');
+              addBtn.type = 'submit';
+              addBtn.className = 'neumorph-btn';
+              addBtn.textContent = '+';
+              addTaskForm.appendChild(addBtn);
+              taskList.appendChild(addTaskForm);
+              sectionLi.appendChild(taskList);
+            }
+            // Add section body to sectionLi
+            sectionLi.appendChild(document.createElement('hr'));
+            sectionList.appendChild(sectionLi);
+          });
         }
-      });
-    } else {
-      localStorage.setItem('checklist', JSON.stringify(items));
-      renderChecklist();
-    }
-  } catch (err) {
-    errorDiv.textContent = 'خطا در ذخیره‌سازی: ' + err.message;
-  }
+        // Add section form
+        const addSectionForm = document.createElement('form');
+        addSectionForm.className = 'add-section-form';
+        addSectionForm.onsubmit = (e) => {
+          e.preventDefault();
+          const input = addSectionForm.querySelector('input');
+          const text = input.value.trim();
+          if (!text) return;
+          if (!project.sections) project.sections = [];
+          project.sections.push({ sectionName: text, tasks: [], _open: true });
+          input.value = '';
+          saveProjectChecklist(projects, renderProjectChecklist);
+        };
+        const sectionInput = document.createElement('input');
+        sectionInput.type = 'text';
+        sectionInput.placeholder = 'بخش جدید (مثلاً کارهای روزانه)...';
+        sectionInput.className = 'neumorph-input';
+        addSectionForm.appendChild(sectionInput);
+        const addSectionBtn = document.createElement('button');
+        addSectionBtn.type = 'submit';
+        addSectionBtn.className = 'neumorph-btn';
+        addSectionBtn.textContent = '+';
+        addSectionForm.appendChild(addSectionBtn);
+        sectionList.appendChild(addSectionForm);
+        projectLi.appendChild(sectionList);
+      }
+      list.appendChild(projectLi);
+    });
+  });
 }
-document.getElementById('add-checklist-form').onsubmit = (e) => {
+// فرم افزودن پروژه
+const addProjectForm = document.getElementById('add-project-form-checklist');
+if (addProjectForm) {
+  addProjectForm.onsubmit = (e) => {
   e.preventDefault();
-  const input = document.getElementById('checklist-input');
-  const errorDiv = document.getElementById('checklist-error');
-  errorDiv.textContent = '';
+    const input = document.getElementById('project-name-input');
   const text = input.value.trim();
   if (!text) return;
-  try {
-    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-      chrome.storage.sync.get(['checklist'], (res) => {
-        let items = res.checklist || [];
-        items.push({ text, done: false });
-        saveChecklist(items, errorDiv, true);
+    loadProjectChecklist((projects) => {
+      projects.push({ projectName: text, sections: [], _open: true });
+      saveProjectChecklist(projects, renderProjectChecklist);
         input.value = '';
       });
-    } else {
-      let items = [];
-      try { items = JSON.parse(localStorage.getItem('checklist') || '[]'); } catch (e) { items = []; }
-      items.push({ text, done: false });
-      saveChecklist(items, errorDiv, false);
-      input.value = '';
-    }
-  } catch (err) {
-    errorDiv.textContent = 'خطا: ' + err.message;
-  }
-};
-// المنت پیام خطا را به HTML اضافه کن اگر وجود ندارد
-if (!document.getElementById('checklist-error')) {
-  const errDiv = document.createElement('div');
-  errDiv.id = 'checklist-error';
-  errDiv.style.color = '#e11d48';
-  errDiv.style.fontSize = '0.95em';
-  document.querySelector('.checklist-section').appendChild(errDiv);
+  };
 }
-renderChecklist();
 
 // --- Notes Section (کامل) ---
 const notesEl = document.getElementById('quick-notes');
@@ -750,6 +929,73 @@ function saveContacts(contacts, useChrome, callback) {
   }
 }
 
+// --- Backup Switch Logic ---
+const backupSwitch = document.getElementById('backup-switch');
+const importFile = document.getElementById('import-file');
+if (backupSwitch) {
+  backupSwitch.onchange = (e) => {
+    const value = backupSwitch.value;
+    if (value === 'export') {
+      const keys = [
+        'projectChecklist', 'bookmarks', 'projects', 'targets', 'contacts', 'moji_notes'
+      ];
+      chrome.storage.sync.get(['lang', ...keys], (data) => {
+        const lang = data.lang || 'fa';
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'MKPlanner-backup-' + new Date().toISOString().slice(0,10) + '.json';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 100);
+      });
+      backupSwitch.value = 'none';
+    } else if (value === 'import') {
+      if (importFile) importFile.click();
+      backupSwitch.value = 'none';
+    }
+  };
+}
+if (importFile) {
+  importFile.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        const allowedKeys = [
+          'projectChecklist', 'bookmarks', 'projects', 'targets', 'contacts', 'moji_notes'
+        ];
+        const toImport = {};
+        allowedKeys.forEach(key => {
+          if (data[key] !== undefined) toImport[key] = data[key];
+        });
+        const lang = data.lang || 'fa';
+        if (Object.keys(toImport).length === 0) {
+          alert(lang === 'fa' ? 'فایل پشتیبان نامعتبر است!' : 'Invalid backup file!');
+          return;
+        }
+        if (confirm(lang === 'fa' ? 'آیا مطمئن هستید که می‌خواهید این فایل پشتیبان را وارد کنید؟ این کار داده‌های فعلی شما را جایگزین می‌کند.' : 'Are you sure you want to import this backup? This will overwrite your current data.')) {
+          chrome.storage.sync.set(toImport, () => {
+            alert(lang === 'fa' ? 'پشتیبان با موفقیت وارد شد!' : 'Backup imported successfully!');
+            location.reload();
+          });
+        }
+      } catch (err) {
+        alert('Invalid backup file!');
+      }
+    };
+    reader.readAsText(file);
+    backupDropdown.classList.remove('open');
+  };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // --- Header Date Display ---
   renderHeaderDateDisplay();
@@ -799,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  // --- Checklist Section ---
+  // --- Project Checklist Section ---
   if (!document.getElementById('checklist-error')) {
     const errDiv = document.createElement('div');
     errDiv.id = 'checklist-error';
@@ -807,33 +1053,23 @@ document.addEventListener('DOMContentLoaded', () => {
     errDiv.style.fontSize = '0.95em';
     document.querySelector('.checklist-section').appendChild(errDiv);
   }
-  renderChecklist();
-  document.getElementById('add-checklist-form').onsubmit = (e) => {
-    e.preventDefault();
-    const input = document.getElementById('checklist-input');
-    const errorDiv = document.getElementById('checklist-error');
-    errorDiv.textContent = '';
-    const text = input.value.trim();
-    if (!text) return;
-    try {
-      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-        chrome.storage.sync.get(['checklist'], (res) => {
-          let items = res.checklist || [];
-          items.push({ text, done: false });
-          saveChecklist(items, errorDiv, true);
-          input.value = '';
+  renderProjectChecklist();
+
+  // مقداردهی اولیه placeholderها بر اساس زبان انتخابی
+  chrome.storage.sync.get(['lang'], (res) => {
+    const lang = res.lang || 'fa';
+    // ورودی تسک جدید
+    document.querySelectorAll('.add-task-form input').forEach(input => {
+      input.placeholder = lang === 'en' ? 'New task ...' : 'کار جدید...';
+    });
+    // ورودی بخش جدید
+    document.querySelectorAll('.add-section-form input').forEach(input => {
+      input.placeholder = lang === 'en' ? 'New section (e.g. Daily Tasks)...' : 'بخش جدید (مثلاً کارهای روزانه)...';
         });
-      } else {
-        let items = [];
-        try { items = JSON.parse(localStorage.getItem('checklist') || '[]'); } catch (e) { items = []; }
-        items.push({ text, done: false });
-        saveChecklist(items, errorDiv, false);
-        input.value = '';
-      }
-    } catch (err) {
-      errorDiv.textContent = 'خطا: ' + err.message;
-    }
-  };
+    // ورودی افزودن لیست
+    const projectNameInput = document.getElementById('project-name-input');
+    if (projectNameInput) projectNameInput.placeholder = lang === 'en' ? 'New list ...' : 'لیست جدید ...';
+  });
 
   // --- Notes Section ---
   if (notesEl) {
@@ -850,6 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('project-input');
     const title = input.value.trim();
     if (!title) return;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
     chrome.storage.sync.get(['projects'], (res) => {
       const projects = res.projects || [];
       projects.push({ title });
@@ -858,6 +1095,15 @@ document.addEventListener('DOMContentLoaded', () => {
         input.value = '';
       });
     });
+    } else {
+      let projects = [];
+      try { projects = JSON.parse(localStorage.getItem('projects') || '[]'); } catch (e) { projects = []; }
+      projects.push({ title });
+      saveProjects(projects, () => {
+        renderProjects();
+        input.value = '';
+      });
+    }
   };
 
   // --- Targets Section ---
@@ -867,6 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('target-input');
     const title = input.value.trim();
     if (!title) return;
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
     chrome.storage.sync.get(['targets'], (res) => {
       const targets = res.targets || [];
       targets.push({ title });
@@ -875,6 +1122,15 @@ document.addEventListener('DOMContentLoaded', () => {
         input.value = '';
       });
     });
+    } else {
+      let targets = [];
+      try { targets = JSON.parse(localStorage.getItem('targets') || '[]'); } catch (e) { targets = []; }
+      targets.push({ title });
+      saveTargets(targets, () => {
+        renderTargets();
+        input.value = '';
+      });
+    }
   };
 
   // --- امتیاز روزانه: نمایش شعر شاهنامه ---

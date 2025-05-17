@@ -82,7 +82,7 @@ body.dark {
   align-items: center;
   justify-content: center;
   min-width: 220px;
-  padding: 8px 16px;
+  padding: 2px 16px;
   font-size: 1.05rem;
   background: inherit;
   box-shadow: 4px 4px 10px var(--color-shadow-dark), -4px -4px 10px var(--color-shadow-light);
@@ -137,7 +137,11 @@ body.dark .neumorph-btn:active {
   font-size: 1rem;
   min-width: 0;
   margin: 0 5px;
-  width: 85%;
+  width: 80%;
+  height: 30px;
+}
+hr {
+  border: #10b981;
 }
 section.special-score-section.neumorph {
   padding: 0 10px;
@@ -273,6 +277,7 @@ body.dark #quick-notes {
   padding: 6px 0;
   border-bottom: 1px solid #e0e0e0;
   font-size: 1rem;
+  justify-content: space-between;
 }
 body.dark #project-list li, body.dark #target-list li {
   border-bottom: 1px solid #23232a;
@@ -393,9 +398,35 @@ body, html {
   justify-content: space-between;
   border: solid 1px #888;
 }
-li {
-  display: flex;
-  justify-content: space-between;
+.left-col.checklist-section > div {
+  width: 100%;
+  overflow-x: auto;
+}
+.left-col.checklist-section > div::-webkit-scrollbar,
+ul#project-checklist::-webkit-scrollbar {
+  height: 10px;
+  background: var(--color-bg-light);
+  border-radius: 8px;
+}
+body.dark .left-col.checklist-section > div::-webkit-scrollbar,
+body.dark ul#project-checklist::-webkit-scrollbar {
+  background: var(--color-bg-dark);
+}
+.left-col.checklist-section > div::-webkit-scrollbar-thumb,
+ul#project-checklist::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 8px;
+}
+body.dark .left-col.checklist-section > div::-webkit-scrollbar-thumb,
+body.dark ul#project-checklist::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+}
+.left-col.checklist-section > div {
+  scrollbar-color: var(--color-primary) var(--color-bg-light);
+  scrollbar-width: thin;
+}
+body.dark .left-col.checklist-section > div {
+  scrollbar-color: var(--color-primary) var(--color-bg-dark);
 }
 .left-col.notes-section {
   grid-row: 3 / span 2;
@@ -659,6 +690,144 @@ body.dark #contacts-list::-webkit-scrollbar {
   background: var(--color-primary);
   border-radius: 8px;
 }
-body.dark #contacts-list::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+
+.project-accordion {
+  margin: 10px;
+  border-radius: 10px;
+  background: var(--color-bg-light);
+  box-shadow: 2px 2px 8px var(--color-shadow-dark), -2px -2px 8px var(--color-shadow-light);
+  padding: 8px;
+  border: solid 1px #10b981;
+}
+body.dark .project-accordion {
+  background: var(--color-bg-dark);
+  box-shadow: 2px 2px 8px var(--color-shadow-darkmode-dark), -2px -2px 8px var(--color-shadow-darkmode-light);
+}
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.section-list {
+  margin: 0 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.section-accordion {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #f7f7fa;
+  box-shadow: 1px 1px 4px #e0e0e0;
+  padding: 4px 4px 0 4px;
+}
+body.dark .section-accordion {
+  background: #23272f;
+  box-shadow: 1px 1px 4px #181c23;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 0;
+}
+.task-list {
+  margin: 0 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  justify-content: space-between;
+}
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin: 0 4px;
+}
+.add-section-form, .add-task-form {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0 0 0;
+}
+.add-section-form input, .add-task-form input {
+  flex: 1;
+}
+.add-section-form button, .add-task-form button {
+  min-width: 32px;
+}
+
+.theme-switch-btn, .lang-switch-btn {
+  height: 44px !important;
+  min-height: 44px !important;
+  box-sizing: border-box;
+}
+
+ul#project-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Backup Dropdown Styles */
+.dropdown {
+  display: inline-block;
+  position: relative;
+  margin-left: 8px;
+}
+.dropdown-chevron {
+  transition: transform 0.2s;
+}
+#backup-dropdown.open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+#backup-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 8px 0;
+  min-width: 140px;
+}
+body.dark #backup-dropdown .dropdown-content {
+  background: #23272f;
+}
+#backup-dropdown.open .dropdown-content {
+  display: block;
+}
+#backup-dropdown .dropdown-content button {
+  text-align: left;
+  padding: 8px 16px;
+  font-size: 1em;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+#backup-dropdown .dropdown-content button:hover {
+  background: #f0f0f0;
+}
+body.dark #backup-dropdown .dropdown-content button:hover {
+  background: #333;
+}
+
+.backup-switch-btn {
+  height: 44px !important;
+  min-height: 44px !important;
+  box-sizing: border-box;
+  margin-left: 8px;
 } 
