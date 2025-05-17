@@ -1,13 +1,13 @@
 # MKPlanner (by Mojtaba Sadatpour)
 
-**یک افزونه کروم برای برنامه‌ریزی روزانه، مدیریت کارها، تقویم جلالی/میلادی، پومودورو، یادداشت سریع، شعر شاهنامه و...**
+**یک افزونه کروم برای برنامه‌ریزی روزانه، مدیریت پروژه و کارها، تقویم جلالی/میلادی، پومودورو، یادداشت سریع، شعر شاهنامه و...**
 
 ---
 
 ## معرفی (Introduction)
 
 MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئومورفیک است که امکانات زیر را ارائه می‌دهد:
-- برنامه‌ریز روزانه و چک‌لیست
+- برنامه‌ریز روزانه و چک‌لیست گروه‌بندی‌شده (پروژه/بخش/تسک) با آکاردئون
 - تقویم جلالی/میلادی
 - تایمر پومودورو
 - یادداشت سریع
@@ -15,6 +15,7 @@ MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئ
 - حالت تاریک/روشن
 - پشتیبانی از دو زبان فارسی و انگلیسی
 - ذخیره‌سازی ابری (chrome.storage.sync) با fallback به localStorage
+- **پشتیبان‌گیری (ایمپورت/اکسپورت) از داده‌ها**
 
 ---
 
@@ -45,11 +46,17 @@ MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئ
 - هر بخش (برنامه‌ریز، تقویم، پومودورو، یادداشت و...) به صورت جداگانه قابل استفاده است.
 - شعر شاهنامه هر روز به صورت تصادفی نمایش داده می‌شود و با تغییر زبان، معنی انگلیسی یا فارسی نمایش داده می‌شود.
 - داده‌های شما به صورت ابری ذخیره می‌شود و در صورت پر شدن quota به localStorage منتقل می‌شود.
+- **برای پشتیبان‌گیری (ایمپورت/اکسپورت):**
+  - از منوی بالای افزونه (کنار سوئیچر زبان)، منوی کشویی «پشتیبان‌گیری» را باز کنید.
+  - برای گرفتن خروجی (Export)، گزینه «خروجی گرفتن» را انتخاب کنید تا فایل بکاپ دانلود شود.
+  - برای ورود اطلاعات (Import)، گزینه «ورود اطلاعات» را انتخاب و فایل بکاپ (فرمت JSON) را انتخاب کنید.
+  - پس از تأیید، داده‌های شما جایگزین می‌شود.
 
 ---
 
 ## ویژگی‌ها (Features)
 
+- **Project Checklist**: مدیریت پروژه‌ها، بخش‌ها و تسک‌ها به صورت گروه‌بندی و آکاردئونی
 - **Daily Planner**: مدیریت کارهای روزانه با قابلیت افزودن، ویرایش و حذف
 - **Jalali/Gregorian Calendar**: نمایش تاریخ شمسی و میلادی
 - **Pomodoro Timer**: تایمر با دکمه‌های شروع، توقف و ریست (Start, Stop, Reset)
@@ -58,6 +65,8 @@ MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئ
 - **Dark/Light Mode**: تغییر تم
 - **i18n**: پشتیبانی کامل از فارسی و انگلیسی
 - **Cloud Sync**: ذخیره‌سازی ابری با chrome.storage.sync
+- **Backup/Restore**: ایمپورت و اکسپورت داده‌ها با یک کلیک
+- **رابط کاربری مینیمال و واکنش‌گرا**
 
 ---
 
@@ -69,6 +78,16 @@ MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئ
 
 ---
 
+## سوالات متداول پشتیبان‌گیری (FAQ Backup)
+- **آیا با ایمپورت، داده‌های قبلی حذف می‌شود؟**
+  بله، داده‌های فعلی با داده‌های فایل بکاپ جایگزین می‌شود.
+- **فرمت فایل بکاپ چیست؟**
+  فایل بکاپ با فرمت JSON است و فقط از طریق همین افزونه قابل استفاده است.
+- **آیا می‌توانم بکاپ را به دستگاه دیگر منتقل کنم؟**
+  بله، کافیست فایل را در دستگاه جدید ایمپورت کنید.
+
+---
+
 ## Developer
 - [Mojtaba Sadatpour](https://sadatpour.com)
 
@@ -77,9 +96,10 @@ MKPlanner یک افزونه کروم با رابط کاربری مدرن و نئ
 ### English
 
 # MKPlanner (Moji Planner)
-A modern Chrome extension for daily planning, Jalali/Gregorian calendar, Pomodoro timer, quick notes, random Shahnameh poetry, and more.
+A modern Chrome extension for daily planning, project/section/task checklist, Jalali/Gregorian calendar, Pomodoro timer, quick notes, random Shahnameh poetry, and more.
 
 ## Features
+- Project/Section/Task checklist with accordion UI
 - Daily planner & checklist
 - Jalali/Gregorian calendar
 - Pomodoro timer (Start, Stop, Reset)
@@ -88,6 +108,8 @@ A modern Chrome extension for daily planning, Jalali/Gregorian calendar, Pomodor
 - Dark/Light mode
 - Full i18n (English & Persian)
 - Cloud sync (chrome.storage.sync with localStorage fallback)
+- **Backup/Restore (import/export) from the header menu**
+- Minimal, responsive UI
 
 ## Installation
 1. Download or clone this repo:
@@ -112,6 +134,18 @@ A modern Chrome extension for daily planning, Jalali/Gregorian calendar, Pomodor
 - Each section (planner, calendar, pomodoro, notes, poetry) is independent.
 - A random Shahnameh verse is shown daily, with meaning in the selected language.
 - Your data is synced to the cloud, with local fallback if quota is exceeded.
+- **To backup or restore your data:**
+  - Use the "Backup" dropdown menu in the header (next to the language switcher).
+  - Select "Export" to download a backup file (JSON).
+  - Select "Import" to upload a backup file and restore your data (your current data will be replaced).
+
+## FAQ (Backup/Restore)
+- **Will import overwrite my current data?**
+  Yes, importing a backup will replace your current data.
+- **What is the backup file format?**
+  It's a JSON file, only usable with this extension.
+- **Can I transfer my backup to another device?**
+  Yes, just import the file on the new device.
 
 ## Support
 For bug reports or suggestions, visit [sadatpour.com](https://sadatpour.com) 
