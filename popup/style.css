@@ -192,7 +192,7 @@ div#contacts-list {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 5px;
   border-radius: 10px;
   background: inherit;
   box-shadow: 2px 2px 6px var(--color-shadow-dark), -2px -2px 6px var(--color-shadow-light);
@@ -442,6 +442,7 @@ body.dark .left-col.checklist-section > div {
   display: flex;
   flex-direction: column;
   border: solid 1px #888;
+  justify-content: space-between;
 }
 .center-col.slider-section {
   min-height: 80px;
