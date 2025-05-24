@@ -471,12 +471,12 @@ function renderProjectChecklist() {
   list.innerHTML = '';
   loadProjectChecklist((projects) => {
     if (!projects.length) {
-      const empty = document.createElement('li');
-      empty.style.color = '#aaa';
+    const empty = document.createElement('li');
+    empty.style.color = '#aaa';
       empty.textContent = 'هنوز پروژه‌ای ثبت نشده است.';
-      list.appendChild(empty);
-      return;
-    }
+    list.appendChild(empty);
+    return;
+  }
     projects.forEach((project, pi) => {
       const projectLi = document.createElement('li');
       projectLi.className = 'project-accordion';
@@ -590,14 +590,14 @@ function renderProjectChecklist() {
                 section.tasks.forEach((task, ti) => {
                   const taskLi = document.createElement('li');
                   taskLi.className = 'task-item';
-                  const cb = document.createElement('input');
-                  cb.type = 'checkbox';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
                   cb.checked = task.done;
-                  cb.onchange = () => {
+    cb.onchange = () => {
                     section.tasks[ti].done = cb.checked;
                     saveProjectChecklist(projects, renderProjectChecklist);
-                  };
-                  const span = document.createElement('span');
+    };
+    const span = document.createElement('span');
                   span.textContent = task.text;
                   if (task.done) span.style.textDecoration = 'line-through';
                   // Delete task
@@ -619,7 +619,7 @@ function renderProjectChecklist() {
               const addTaskForm = document.createElement('form');
               addTaskForm.className = 'add-task-form';
               addTaskForm.onsubmit = (e) => {
-                e.preventDefault();
+      e.preventDefault();
                 const input = addTaskForm.querySelector('input');
                 const text = input.value.trim();
                 if (!text) return;
@@ -704,13 +704,13 @@ function renderProjectChecklist() {
         const addSectionForm = document.createElement('form');
         addSectionForm.className = 'add-section-form';
         addSectionForm.onsubmit = (e) => {
-          e.preventDefault();
+  e.preventDefault();
           const input = addSectionForm.querySelector('input');
-          const text = input.value.trim();
-          if (!text) return;
+  const text = input.value.trim();
+  if (!text) return;
           if (!project.sections) project.sections = [];
           project.sections.push({ sectionName: text, tasks: [], _open: true });
-          input.value = '';
+        input.value = '';
           saveProjectChecklist(projects, renderProjectChecklist);
         };
         const sectionInput = document.createElement('input');

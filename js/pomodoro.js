@@ -35,11 +35,17 @@ export function renderPomodoro(container) {
     container.appendChild(cycleDiv);
     let interval = null, cycles = 0;
     const pomodoroBeep = new Audio(chrome.runtime.getURL('js/beep.mp3'));
+    function updateCycleCount() {
+      chrome.runtime.sendMessage({ type: 'GET_POMODORO_CYCLES' }, res => {
+        cycles = (res && typeof res.cycles === 'number') ? res.cycles : 0;
+        cycleDiv.textContent = labels[lang].cycles + cycles;
+      });
+    }
     function updateUI(remain) {
       const m = Math.floor(remain / 60).toString().padStart(2, '0');
       const s = (remain % 60).toString().padStart(2, '0');
       timer.textContent = `${m}:${s}`;
-      cycleDiv.textContent = labels[lang].cycles + cycles;
+      updateCycleCount();
     }
     function poll() {
       chrome.runtime.sendMessage({ type: 'GET_POMODORO_END' }, res => {
@@ -57,7 +63,10 @@ export function renderPomodoro(container) {
             clearInterval(interval);
             interval = null;
             pomodoroBeep.play();
-            setTimeout(() => updateUI(25 * 60), 1000);
+            setTimeout(() => {
+              updateUI(25 * 60);
+              updateCycleCount();
+            }, 1000);
           }
         } else {
           updateUI(25 * 60);
@@ -74,7 +83,7 @@ export function renderPomodoro(container) {
     function stop() {
       chrome.runtime.sendMessage({ type: 'STOP_POMODORO' }, res => {
         if (interval) clearInterval(interval);
-        interval = null;
+      interval = null;
         updateUI(25 * 60);
       });
     }
