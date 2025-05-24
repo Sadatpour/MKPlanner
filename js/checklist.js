@@ -50,7 +50,9 @@ export function renderChecklist(container) {
       span.style.margin = '0 8px';
       if (item.done) span.style.textDecoration = 'line-through';
       const del = document.createElement('button');
-      del.textContent = '🗑️';
+      del.className = 'delete-btn';
+      del.innerHTML = '';
+      del.appendChild(createDeleteIcon());
       del.onclick = () => {
         items.splice(i, 1);
         save();
@@ -70,4 +72,22 @@ export function renderChecklist(container) {
     render();
   };
   load();
+}
+
+// تابع ساخت SVG آیکون حذف مدرن
+function createDeleteIcon() {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '20');
+  svg.setAttribute('height', '20');
+  svg.setAttribute('viewBox', '0 0 20 20');
+  svg.setAttribute('fill', 'none');
+  svg.innerHTML = `
+    <rect x="5.5" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <rect x="9.25" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <rect x="13" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <path d="M4 6.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="7" y="3" width="6" height="2" rx="1" fill="currentColor"/>
+    <rect x="3.5" y="6.5" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+  `;
+  return svg;
 } 

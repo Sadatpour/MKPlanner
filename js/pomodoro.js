@@ -33,48 +33,60 @@ export function renderPomodoro(container) {
     cycleDiv.style.textAlign = 'center';
     cycleDiv.style.marginTop = '8px';
     container.appendChild(cycleDiv);
-    let work = 25 * 60, rest = 5 * 60;
-    let isWork = true, time = work, interval = null, cycles = 0;
+    let interval = null, cycles = 0;
     const pomodoroBeep = new Audio(chrome.runtime.getURL('js/beep.mp3'));
-    function update() {
-      const m = Math.floor(time / 60).toString().padStart(2, '0');
-      const s = (time % 60).toString().padStart(2, '0');
+    function updateUI(remain) {
+      const m = Math.floor(remain / 60).toString().padStart(2, '0');
+      const s = (remain % 60).toString().padStart(2, '0');
       timer.textContent = `${m}:${s}`;
       cycleDiv.textContent = labels[lang].cycles + cycles;
     }
-    function start() {
-      if (interval) return;
-      interval = setInterval(() => {
-        time--;
-        update();
-        if (time <= 0) {
-          clearInterval(interval);
+    function poll() {
+      chrome.runtime.sendMessage({ type: 'GET_POMODORO_END' }, res => {
+        if (chrome.runtime.lastError) {
+          if (interval) clearInterval(interval);
           interval = null;
-          isWork = !isWork;
-          time = isWork ? work : rest;
-          if (!isWork) cycles++;
-          update();
-          pomodoroBeep.play();
-          if (Notification && Notification.permission === 'granted') {
-            new Notification(labels[lang].title, { body: isWork ? (lang === 'fa' ? 'زمان کار!' : 'Work time!') : (lang === 'fa' ? 'زمان استراحت!' : 'Break time!') });
-          }
+          timer.textContent = '⛔️';
+          cycleDiv.textContent = lang === 'fa' ? 'ارتباط با پس‌زمینه قطع است' : 'Background not available';
+          return;
         }
-      }, 1000);
+        if (res && res.endTime) {
+          const remain = Math.max(0, Math.floor((res.endTime - Date.now()) / 1000));
+          updateUI(remain);
+          if (remain === 0) {
+            clearInterval(interval);
+            interval = null;
+            pomodoroBeep.play();
+            setTimeout(() => updateUI(25 * 60), 1000);
+          }
+        } else {
+          updateUI(25 * 60);
+        }
+      });
+    }
+    function start() {
+      chrome.runtime.sendMessage({ type: 'START_POMODORO' }, res => {
+        poll();
+        if (interval) clearInterval(interval);
+        interval = setInterval(poll, 1000);
+      });
     }
     function stop() {
-      clearInterval(interval);
-      interval = null;
+      chrome.runtime.sendMessage({ type: 'STOP_POMODORO' }, res => {
+        if (interval) clearInterval(interval);
+        interval = null;
+        updateUI(25 * 60);
+      });
     }
     function reset() {
       stop();
-      isWork = true;
-      time = work;
-      update();
     }
     startBtn.onclick = start;
     stopBtn.onclick = stop;
     resetBtn.onclick = reset;
-    update();
+    // هر بار popup باز شد، وضعیت تایمر را چک کن
+    poll();
+    if (!interval) interval = setInterval(poll, 1000);
     if (Notification && Notification.permission !== 'granted') {
       Notification.requestPermission();
     }
