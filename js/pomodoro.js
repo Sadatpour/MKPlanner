@@ -4,8 +4,8 @@ export function renderPomodoro(container) {
   function render(lang) {
     container.innerHTML = '';
     const labels = {
-      fa: { start: 'شروع', stop: 'توقف', reset: 'ریست', title: 'تایمر پومودورو', cycles: 'تعداد سیکل امروز: ' },
-      en: { start: 'Start', stop: 'Stop', reset: 'Reset', title: 'Pomodoro Timer', cycles: 'Cycles today: ' }
+      fa: { start: 'شروع', stop: 'توقف', reset: 'ریست', title: 'تایمر پومودورو' },
+      en: { start: 'Start', stop: 'Stop', reset: 'Reset', title: 'Pomodoro Timer' }
     };
     const title = document.createElement('h3');
     title.textContent = labels[lang].title;
@@ -29,71 +29,91 @@ export function renderPomodoro(container) {
     controls.appendChild(stopBtn);
     controls.appendChild(resetBtn);
     container.appendChild(controls);
-    const cycleDiv = document.createElement('div');
-    cycleDiv.style.textAlign = 'center';
-    cycleDiv.style.marginTop = '8px';
-    container.appendChild(cycleDiv);
-    let interval = null, cycles = 0;
+    let interval = null;
+    let remain = 25 * 60;
+    let paused = false;
     const pomodoroBeep = new Audio(chrome.runtime.getURL('js/beep.mp3'));
-    function updateCycleCount() {
-      chrome.runtime.sendMessage({ type: 'GET_POMODORO_CYCLES' }, res => {
-        cycles = (res && typeof res.cycles === 'number') ? res.cycles : 0;
-        cycleDiv.textContent = labels[lang].cycles + cycles;
-      });
-    }
-    function updateUI(remain) {
+    function updateUI(newRemain) {
+      remain = newRemain;
       const m = Math.floor(remain / 60).toString().padStart(2, '0');
       const s = (remain % 60).toString().padStart(2, '0');
       timer.textContent = `${m}:${s}`;
-      updateCycleCount();
+    }
+    function setStopBtnText() {
+      if (paused) {
+        stopBtn.textContent = lang === 'fa' ? 'ادامه' : 'Continue';
+      } else {
+        stopBtn.textContent = labels[lang].stop;
+      }
     }
     function poll() {
+      if (paused) return;
       chrome.runtime.sendMessage({ type: 'GET_POMODORO_END' }, res => {
         if (chrome.runtime.lastError) {
           if (interval) clearInterval(interval);
           interval = null;
           timer.textContent = '⛔️';
-          cycleDiv.textContent = lang === 'fa' ? 'ارتباط با پس‌زمینه قطع است' : 'Background not available';
           return;
         }
         if (res && res.endTime) {
-          const remain = Math.max(0, Math.floor((res.endTime - Date.now()) / 1000));
-          updateUI(remain);
-          if (remain === 0) {
+          const newRemain = Math.max(0, Math.floor((res.endTime - Date.now()) / 1000));
+          updateUI(newRemain);
+          if (newRemain === 0) {
             clearInterval(interval);
             interval = null;
             pomodoroBeep.play();
             setTimeout(() => {
               updateUI(25 * 60);
-              updateCycleCount();
+              remain = 25 * 60;
             }, 1000);
           }
         } else {
-          updateUI(25 * 60);
+          updateUI(remain);
         }
       });
     }
     function start() {
-      chrome.runtime.sendMessage({ type: 'START_POMODORO' }, res => {
-        poll();
-        if (interval) clearInterval(interval);
-        interval = setInterval(poll, 1000);
-      });
+      if (paused) {
+        chrome.runtime.sendMessage({ type: 'START_POMODORO', remain }, res => {
+          paused = false;
+          setStopBtnText();
+          poll();
+          if (interval) clearInterval(interval);
+          interval = setInterval(poll, 1000);
+        });
+      } else {
+        chrome.runtime.sendMessage({ type: 'START_POMODORO' }, res => {
+          poll();
+          if (interval) clearInterval(interval);
+          interval = setInterval(poll, 1000);
+        });
+      }
     }
-    function stop() {
-      chrome.runtime.sendMessage({ type: 'STOP_POMODORO' }, res => {
+    function stopOrContinue() {
+      if (!paused) {
+        paused = true;
         if (interval) clearInterval(interval);
-      interval = null;
-        updateUI(25 * 60);
-      });
+        interval = null;
+        updateUI(remain);
+        chrome.runtime.sendMessage({ type: 'PAUSE_POMODORO', remain });
+        setStopBtnText();
+      } else {
+        start();
+      }
     }
     function reset() {
-      stop();
+      paused = false;
+      remain = 25 * 60;
+      if (interval) clearInterval(interval);
+      interval = null;
+      updateUI(remain);
+      chrome.runtime.sendMessage({ type: 'STOP_POMODORO' });
+      setStopBtnText();
     }
     startBtn.onclick = start;
-    stopBtn.onclick = stop;
+    stopBtn.onclick = stopOrContinue;
     resetBtn.onclick = reset;
-    // هر بار popup باز شد، وضعیت تایمر را چک کن
+    setStopBtnText();
     poll();
     if (!interval) interval = setInterval(poll, 1000);
     if (Notification && Notification.permission !== 'granted') {
