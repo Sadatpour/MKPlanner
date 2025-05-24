@@ -247,108 +247,153 @@ function renderCalendar() {
 }
 renderCalendar();
 
+// --- Drag & Drop Helper ---
+function addDragAndDrop(listEl, items, saveFn, renderFn) {
+  let dragSrcIdx = null;
+  Array.from(listEl.children).forEach((li, idx) => {
+    li.draggable = true;
+    li.ondragstart = (e) => {
+      dragSrcIdx = idx;
+      e.dataTransfer.effectAllowed = 'move';
+      li.classList.add('dragging');
+    };
+    li.ondragend = () => {
+      li.classList.remove('dragging');
+    };
+    li.ondragover = (e) => {
+      e.preventDefault();
+      li.classList.add('drag-over');
+    };
+    li.ondragleave = () => {
+      li.classList.remove('drag-over');
+    };
+    li.ondrop = (e) => {
+      e.preventDefault();
+      li.classList.remove('drag-over');
+      if (dragSrcIdx !== null && dragSrcIdx !== idx) {
+        const moved = items.splice(dragSrcIdx, 1)[0];
+        items.splice(idx, 0, moved);
+        saveFn(items, renderFn);
+      }
+      dragSrcIdx = null;
+    };
+  });
+}
+
 // --- Bookmarks Section (full CRUD) ---
 function renderBookmarks() {
   const list = document.getElementById('bookmarks-list');
-  list.innerHTML = '';
+  // حذف پیام خالی قبلی
+  const prevEmpty = document.getElementById('empty-bookmark-msg');
+  if (prevEmpty) prevEmpty.remove();
+
   if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
     chrome.storage.sync.get(['bookmarks'], (res) => {
-      if (chrome.runtime && chrome.runtime.lastError) {
-        // فقط localStorage را بخوان
-        let bookmarks = [];
-        try { bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]'); } catch (e) { bookmarks = []; }
-        bookmarks.forEach((bm, i) => {
-          const item = document.createElement('div');
-          item.className = 'bookmark-item';
-          item.title = bm.url;
-          const favicon = document.createElement('img');
-          favicon.className = 'bookmark-favicon';
-          favicon.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(bm.url)}`;
-          favicon.alt = '';
-          const title = document.createElement('span');
-          title.textContent = bm.title || bm.url;
-          item.onclick = (e) => {
-            if (e.target.classList.contains('delete-btn')) return;
-            window.open(bm.url, '_blank');
-          };
-          const del = document.createElement('button');
-          del.className = 'delete-btn';
-          del.textContent = '🗑️';
-          del.onclick = (e) => {
-            e.stopPropagation();
-            bookmarks.splice(i, 1);
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-            renderBookmarks();
-          };
-          item.appendChild(favicon);
-          item.appendChild(title);
-          item.appendChild(del);
-          list.appendChild(item);
-        });
+      const bookmarks = res.bookmarks || [];
+      list.innerHTML = '';
+      if (bookmarks.length === 0) {
+        const empty = document.createElement('div');
+        empty.id = 'empty-bookmark-msg';
+        empty.style.color = '#aaa';
+        empty.textContent = 'هنوز بوکمارکی ثبت نشده است.';
+        list.parentNode.insertBefore(empty, list);
         return;
       }
-      // اگر chrome درست بود، localStorage را پاک کن
-      localStorage.removeItem('bookmarks');
-      const bookmarks = res.bookmarks || [];
       bookmarks.forEach((bm, i) => {
-        const item = document.createElement('div');
-        item.className = 'bookmark-item';
-        item.title = bm.url;
+        const li = document.createElement('li');
+        li.className = 'bookmark-item';
+        li.title = bm.url;
         const favicon = document.createElement('img');
         favicon.className = 'bookmark-favicon';
         favicon.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(bm.url)}`;
         favicon.alt = '';
         const title = document.createElement('span');
         title.textContent = bm.title || bm.url;
-        item.onclick = (e) => {
+        li.onclick = (e) => {
           if (e.target.classList.contains('delete-btn')) return;
           window.open(bm.url, '_blank');
         };
         const del = document.createElement('button');
         del.className = 'delete-btn';
-        del.textContent = '🗑️';
+        del.innerHTML = '';
+        del.appendChild(createDeleteIcon());
         del.onclick = (e) => {
           e.stopPropagation();
           bookmarks.splice(i, 1);
           chrome.storage.sync.set({ bookmarks }, renderBookmarks);
         };
-        item.appendChild(favicon);
-        item.appendChild(title);
-        item.appendChild(del);
-        list.appendChild(item);
+        li.appendChild(favicon);
+        li.appendChild(title);
+        li.appendChild(del);
+        list.appendChild(li);
       });
+      // Destroy Sortable قبلی
+      if (list._sortableInstance) list._sortableInstance.destroy();
+      if (bookmarks.length > 1) {
+        list._sortableInstance = Sortable.create(list, {
+          animation: 150,
+          onEnd: function (evt) {
+            const [removed] = bookmarks.splice(evt.oldIndex, 1);
+            bookmarks.splice(evt.newIndex, 0, removed);
+            chrome.storage.sync.set({ bookmarks }, renderBookmarks);
+          }
+        });
+      }
     });
   } else {
     let bookmarks = [];
     try { bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]'); } catch (e) { bookmarks = []; }
+    list.innerHTML = '';
+    if (bookmarks.length === 0) {
+      const empty = document.createElement('div');
+      empty.id = 'empty-bookmark-msg';
+      empty.style.color = '#aaa';
+      empty.textContent = 'هنوز بوکمارکی ثبت نشده است.';
+      list.parentNode.insertBefore(empty, list);
+      return;
+    }
     bookmarks.forEach((bm, i) => {
-      const item = document.createElement('div');
-      item.className = 'bookmark-item';
-      item.title = bm.url;
+      const li = document.createElement('li');
+      li.className = 'bookmark-item';
+      li.title = bm.url;
       const favicon = document.createElement('img');
       favicon.className = 'bookmark-favicon';
       favicon.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(bm.url)}`;
       favicon.alt = '';
       const title = document.createElement('span');
       title.textContent = bm.title || bm.url;
-      item.onclick = (e) => {
+      li.onclick = (e) => {
         if (e.target.classList.contains('delete-btn')) return;
         window.open(bm.url, '_blank');
       };
       const del = document.createElement('button');
       del.className = 'delete-btn';
-      del.textContent = '🗑️';
+      del.innerHTML = '';
+      del.appendChild(createDeleteIcon());
       del.onclick = (e) => {
         e.stopPropagation();
         bookmarks.splice(i, 1);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
         renderBookmarks();
       };
-      item.appendChild(favicon);
-      item.appendChild(title);
-      item.appendChild(del);
-      list.appendChild(item);
+      li.appendChild(favicon);
+      li.appendChild(title);
+      li.appendChild(del);
+      list.appendChild(li);
     });
+    // Destroy Sortable قبلی
+    if (list._sortableInstance) list._sortableInstance.destroy();
+    if (bookmarks.length > 1) {
+      list._sortableInstance = Sortable.create(list, {
+        animation: 150,
+        onEnd: function (evt) {
+          const [removed] = bookmarks.splice(evt.oldIndex, 1);
+          bookmarks.splice(evt.newIndex, 0, removed);
+          localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+          renderBookmarks();
+        }
+      });
+    }
   }
 }
 
@@ -426,12 +471,12 @@ function renderProjectChecklist() {
   list.innerHTML = '';
   loadProjectChecklist((projects) => {
     if (!projects.length) {
-    const empty = document.createElement('li');
-    empty.style.color = '#aaa';
+      const empty = document.createElement('li');
+      empty.style.color = '#aaa';
       empty.textContent = 'هنوز پروژه‌ای ثبت نشده است.';
-    list.appendChild(empty);
-    return;
-  }
+      list.appendChild(empty);
+      return;
+    }
     projects.forEach((project, pi) => {
       const projectLi = document.createElement('li');
       projectLi.className = 'project-accordion';
@@ -454,8 +499,9 @@ function renderProjectChecklist() {
       };
       // آیکون حذف
       const delProjectBtn = document.createElement('button');
-      delProjectBtn.textContent = '🗑️';
       delProjectBtn.className = 'delete-btn';
+      delProjectBtn.innerHTML = '';
+      delProjectBtn.appendChild(createDeleteIcon());
       delProjectBtn.onclick = () => {
         projects.splice(pi, 1);
         saveProjectChecklist(projects, renderProjectChecklist);
@@ -508,8 +554,9 @@ function renderProjectChecklist() {
             };
             // Delete section
             const delSectionBtn = document.createElement('button');
-            delSectionBtn.textContent = '🗑️';
             delSectionBtn.className = 'delete-btn';
+            delSectionBtn.innerHTML = '';
+            delSectionBtn.appendChild(createDeleteIcon());
             delSectionBtn.onclick = () => {
               project.sections.splice(si, 1);
               saveProjectChecklist(projects, renderProjectChecklist);
@@ -543,30 +590,31 @@ function renderProjectChecklist() {
                 section.tasks.forEach((task, ti) => {
                   const taskLi = document.createElement('li');
                   taskLi.className = 'task-item';
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
+                  const cb = document.createElement('input');
+                  cb.type = 'checkbox';
                   cb.checked = task.done;
-    cb.onchange = () => {
+                  cb.onchange = () => {
                     section.tasks[ti].done = cb.checked;
                     saveProjectChecklist(projects, renderProjectChecklist);
-    };
-    const span = document.createElement('span');
+                  };
+                  const span = document.createElement('span');
                   span.textContent = task.text;
                   if (task.done) span.style.textDecoration = 'line-through';
                   // Delete task
                   const delTaskBtn = document.createElement('button');
-                  delTaskBtn.textContent = '🗑️';
                   delTaskBtn.className = 'delete-btn';
+                  delTaskBtn.innerHTML = '';
+                  delTaskBtn.appendChild(createDeleteIcon());
                   delTaskBtn.onclick = () => {
                     section.tasks.splice(ti, 1);
                     saveProjectChecklist(projects, renderProjectChecklist);
-    };
+                  };
                   taskLi.appendChild(cb);
                   taskLi.appendChild(span);
                   taskLi.appendChild(delTaskBtn);
                   taskList.appendChild(taskLi);
-  });
-}
+                });
+              }
               // Add task form
               const addTaskForm = document.createElement('form');
               addTaskForm.className = 'add-task-form';
@@ -591,11 +639,66 @@ function renderProjectChecklist() {
               addTaskForm.appendChild(addBtn);
               taskList.appendChild(addTaskForm);
               sectionLi.appendChild(taskList);
+              // --- SortableJS برای تسک‌ها ---
+              setTimeout(() => {
+                if (section.tasks && section.tasks.length > 1) {
+                  Sortable.create(taskList, {
+                    animation: 150,
+                    onEnd: function (evt) {
+                      const [removed] = section.tasks.splice(evt.oldIndex, 1);
+                      section.tasks.splice(evt.newIndex, 0, removed);
+                      saveProjectChecklist(projects, renderProjectChecklist);
+                    }
+                  });
+                }
+              }, 0);
             }
-            // Add section body to sectionLi
-            sectionLi.appendChild(document.createElement('hr'));
+            // Drag & Drop بخش‌ها
+            let dragSectionIdx = null;
+            Array.from(sectionList.children).forEach((li, idx) => {
+              if (li.className !== 'section-accordion') return;
+              li.draggable = true;
+              li.ondragstart = (e) => {
+                dragSectionIdx = idx;
+                e.dataTransfer.effectAllowed = 'move';
+                li.classList.add('dragging');
+              };
+              li.ondragend = () => {
+                li.classList.remove('dragging');
+              };
+              li.ondragover = (e) => {
+                e.preventDefault();
+                li.classList.add('drag-over');
+              };
+              li.ondragleave = () => {
+                li.classList.remove('drag-over');
+              };
+              li.ondrop = (e) => {
+                e.preventDefault();
+                li.classList.remove('drag-over');
+                if (dragSectionIdx !== null && dragSectionIdx !== idx) {
+                  const moved = project.sections.splice(dragSectionIdx, 1)[0];
+                  project.sections.splice(idx, 0, moved);
+                  saveProjectChecklist(projects, renderProjectChecklist);
+                }
+                dragSectionIdx = null;
+              };
+            });
             sectionList.appendChild(sectionLi);
           });
+          // --- SortableJS برای بخش‌ها ---
+          setTimeout(() => {
+            if (project.sections && project.sections.length > 1) {
+              Sortable.create(sectionList, {
+                animation: 150,
+                onEnd: function (evt) {
+                  const [removed] = project.sections.splice(evt.oldIndex, 1);
+                  project.sections.splice(evt.newIndex, 0, removed);
+                  saveProjectChecklist(projects, renderProjectChecklist);
+                }
+              });
+            }
+          }, 0);
         }
         // Add section form
         const addSectionForm = document.createElement('form');
@@ -623,8 +726,48 @@ function renderProjectChecklist() {
         sectionList.appendChild(addSectionForm);
         projectLi.appendChild(sectionList);
       }
+      // Drag & Drop پروژه‌ها
+      projectLi.draggable = true;
+      projectLi.ondragstart = (e) => {
+        e.dataTransfer.effectAllowed = 'move';
+        projectLi.classList.add('dragging');
+        projectLi.dataset.dragIndex = pi;
+      };
+      projectLi.ondragend = () => {
+        projectLi.classList.remove('dragging');
+      };
+      projectLi.ondragover = (e) => {
+        e.preventDefault();
+        projectLi.classList.add('drag-over');
+      };
+      projectLi.ondragleave = () => {
+        projectLi.classList.remove('drag-over');
+      };
+      projectLi.ondrop = (e) => {
+        e.preventDefault();
+        projectLi.classList.remove('drag-over');
+        const from = parseInt(document.querySelector('li.dragging')?.dataset.dragIndex);
+        if (!isNaN(from) && from !== pi) {
+          const moved = projects.splice(from, 1)[0];
+          projects.splice(pi, 0, moved);
+          saveProjectChecklist(projects, renderProjectChecklist);
+        }
+      };
       list.appendChild(projectLi);
     });
+    // --- SortableJS برای پروژه‌ها ---
+    setTimeout(() => {
+      if (projects.length > 1) {
+        Sortable.create(list, {
+          animation: 150,
+          onEnd: function (evt) {
+            const [removed] = projects.splice(evt.oldIndex, 1);
+            projects.splice(evt.newIndex, 0, removed);
+            saveProjectChecklist(projects, renderProjectChecklist);
+          }
+        });
+      }
+    }, 0);
   });
 }
 // فرم افزودن پروژه
@@ -687,7 +830,8 @@ function renderProjects() {
       li.textContent = prj.title;
       const del = document.createElement('button');
       del.className = 'delete-btn';
-      del.textContent = '🗑️';
+      del.innerHTML = '';
+      del.appendChild(createDeleteIcon());
       del.onclick = () => {
         projects.splice(i, 1);
         saveProjects(projects, renderProjects);
@@ -695,6 +839,19 @@ function renderProjects() {
       li.appendChild(del);
       list.appendChild(li);
     });
+    // --- SortableJS برای پروژه‌ها ---
+    setTimeout(() => {
+      if (projects.length > 1) {
+        Sortable.create(list, {
+          animation: 150,
+          onEnd: function (evt) {
+            const [removed] = projects.splice(evt.oldIndex, 1);
+            projects.splice(evt.newIndex, 0, removed);
+            saveProjects(projects, renderProjects);
+          }
+        });
+      }
+    }, 0);
   }
   if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
     chrome.storage.sync.get(['projects'], (res) => {
@@ -775,7 +932,8 @@ function renderTargets() {
       li.textContent = t.title;
       const del = document.createElement('button');
       del.className = 'delete-btn';
-      del.textContent = '🗑️';
+      del.innerHTML = '';
+      del.appendChild(createDeleteIcon());
       del.onclick = () => {
         targets.splice(i, 1);
         saveTargets(targets, renderTargets);
@@ -783,6 +941,19 @@ function renderTargets() {
       li.appendChild(del);
       list.appendChild(li);
     });
+    // --- SortableJS برای اهداف ---
+    setTimeout(() => {
+      if (targets.length > 1) {
+        Sortable.create(list, {
+          animation: 150,
+          onEnd: function (evt) {
+            const [removed] = targets.splice(evt.oldIndex, 1);
+            targets.splice(evt.newIndex, 0, removed);
+            saveTargets(targets, renderTargets);
+          }
+        });
+      }
+    }, 0);
   }
   if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
     chrome.storage.sync.get(['targets'], (res) => {
@@ -812,7 +983,7 @@ document.getElementById('add-target-form').onsubmit = (e) => {
     chrome.storage.sync.get(['targets'], (res) => {
       let targets = res.targets || [];
       targets.push({ title });
-      saveTargets(targets, () => {
+      chrome.storage.sync.set({ targets }, () => {
         renderTargets();
         input.value = '';
       });
@@ -911,7 +1082,8 @@ function renderContactsList(contacts, list, useChrome) {
     `;
     const del = document.createElement('button');
     del.className = 'delete-btn';
-    del.textContent = '🗑️';
+    del.innerHTML = '';
+    del.appendChild(createDeleteIcon());
     del.onclick = () => {
       contacts.splice(i, 1);
       saveContacts(contacts, useChrome, renderContacts);
@@ -992,7 +1164,6 @@ if (importFile) {
       }
     };
     reader.readAsText(file);
-    backupDropdown.classList.remove('open');
   };
 }
 
@@ -1169,3 +1340,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 }); 
+
+// تابع ساخت SVG آیکون حذف مدرن
+function createDeleteIcon() {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '20');
+  svg.setAttribute('height', '20');
+  svg.setAttribute('viewBox', '0 0 20 20');
+  svg.setAttribute('fill', 'none');
+  svg.innerHTML = `
+    <rect x="5.5" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <rect x="9.25" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <rect x="13" y="8.5" width="1.5" height="6" rx="0.75" fill="currentColor"/>
+    <path d="M4 6.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="7" y="3" width="6" height="2" rx="1" fill="currentColor"/>
+    <rect x="3.5" y="6.5" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+  `;
+  return svg;
+} 

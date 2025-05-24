@@ -18,7 +18,8 @@
   },
   "permissions": [
     "storage",
-    "notifications"
+    "notifications",
+    "alarms"
   ],
   "chrome_url_overrides": {
     "newtab": "popup/index.html"
