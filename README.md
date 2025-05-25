@@ -1,7 +1,6 @@
 <p align="center">
   <img src="screenshot.png" alt="MKPlanner Screenshot" width="600"/>
 </p>
-
 # MKPlanner (by Mojtaba Sadatpour)
 
 **یک افزونه کروم برای برنامه‌ریزی روزانه، مدیریت پروژه و کارها، تقویم جلالی/میلادی، پومودورو، یادداشت سریع، شعر شاهنامه و...**
