@@ -1035,136 +1035,37 @@ function renderDailyScoreVerse() {
   });
 }
 
-// --- Pomodoro Section ---
-renderPomodoro(document.getElementById('pomodoro-timer'));
-
-// --- Contact Manager Section ---
-function renderContacts() {
-  const list = document.getElementById('contacts-list');
-  list.innerHTML = '';
-  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-    chrome.storage.sync.get(['contacts'], (res) => {
-      if (chrome.runtime && chrome.runtime.lastError) {
-        let contacts = [];
-        try { contacts = JSON.parse(localStorage.getItem('contacts') || '[]'); } catch (e) { contacts = []; }
-        renderContactsList(contacts, list, false);
-        return;
-      }
-      localStorage.removeItem('contacts');
-      const contacts = res.contacts || [];
-      renderContactsList(contacts, list, true);
-    });
-  } else {
-    let contacts = [];
-    try { contacts = JSON.parse(localStorage.getItem('contacts') || '[]'); } catch (e) { contacts = []; }
-    renderContactsList(contacts, list, false);
-  }
-}
-function renderContactsList(contacts, list, useChrome) {
-  if (contacts.length === 0) {
-    const empty = document.createElement('div');
-    empty.style.color = '#aaa';
-    empty.textContent = 'هنوز مخاطبی ثبت نشده است.';
-    list.appendChild(empty);
-    return;
-  }
-  contacts.forEach((c, i) => {
-    const div = document.createElement('div');
-    div.className = 'contact-item';
-    div.style.display = 'flex';
-    div.style.gap = '8px';
-    div.style.alignItems = 'center';
-    div.style.marginBottom = '4px';
-    div.innerHTML = `
-      <span style="min-width:70px;font-weight:bold;">${c.name}</span>
-      <span style="min-width:90px;">${c.phone}</span>
-      <span style="min-width:70px;">${c.unit}</span>
-    `;
-    const del = document.createElement('button');
-    del.className = 'delete-btn';
-    del.innerHTML = '';
-    del.appendChild(createDeleteIcon());
-    del.onclick = () => {
-      contacts.splice(i, 1);
-      saveContacts(contacts, useChrome, renderContacts);
-    };
-    div.appendChild(del);
-    list.appendChild(div);
-  });
-}
-function saveContacts(contacts, useChrome, callback) {
-  if (useChrome && typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
-    chrome.storage.sync.set({ contacts }, callback);
-  } else {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    if (callback) callback();
-  }
-}
-
-// --- Backup Switch Logic ---
-const backupSwitch = document.getElementById('backup-switch');
-const importFile = document.getElementById('import-file');
-if (backupSwitch) {
-  backupSwitch.onchange = (e) => {
-    const value = backupSwitch.value;
-    if (value === 'export') {
-      const keys = [
-        'projectChecklist', 'bookmarks', 'projects', 'targets', 'contacts', 'moji_notes'
-      ];
-      chrome.storage.sync.get(['lang', ...keys], (data) => {
-        const lang = data.lang || 'fa';
-        const json = JSON.stringify(data, null, 2);
-        const blob = new Blob([json], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'MKPlanner-backup-' + new Date().toISOString().slice(0,10) + '.json';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => {
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }, 100);
+function addSurpriseBtn() {
+  const themeSwitchEl = document.getElementById('theme-switch');
+  if (themeSwitchEl) {
+    if (chrome && chrome.storage && chrome.storage.sync) {
+      chrome.storage.sync.get(['lang'], (res) => {
+        const lang = res.lang || 'fa';
+        const surpriseBtn = document.createElement('button');
+        surpriseBtn.textContent = lang === 'fa' ? 'منو سورپرایز کن!' : 'Surprise me!';
+        surpriseBtn.className = 'neumorph-btn';
+        surpriseBtn.id = 'surprise-btn-global';
+        surpriseBtn.style.marginLeft = '10px';
+        surpriseBtn.onclick = () => { if (window.surpriseUser) window.surpriseUser(); };
+        // اگر قبلاً دکمه اضافه شده بود، دوباره اضافه نکن
+        if (!document.getElementById('surprise-btn-global')) {
+          themeSwitchEl.parentNode.insertBefore(surpriseBtn, themeSwitchEl);
+        }
       });
-      backupSwitch.value = 'none';
-    } else if (value === 'import') {
-      if (importFile) importFile.click();
-      backupSwitch.value = 'none';
-    }
-  };
-}
-if (importFile) {
-  importFile.onchange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const data = JSON.parse(ev.target.result);
-        const allowedKeys = [
-          'projectChecklist', 'bookmarks', 'projects', 'targets', 'contacts', 'moji_notes'
-        ];
-        const toImport = {};
-        allowedKeys.forEach(key => {
-          if (data[key] !== undefined) toImport[key] = data[key];
-        });
-        const lang = data.lang || 'fa';
-        if (Object.keys(toImport).length === 0) {
-          alert(lang === 'fa' ? 'فایل پشتیبان نامعتبر است!' : 'Invalid backup file!');
-          return;
-        }
-        if (confirm(lang === 'fa' ? 'آیا مطمئن هستید که می‌خواهید این فایل پشتیبان را وارد کنید؟ این کار داده‌های فعلی شما را جایگزین می‌کند.' : 'Are you sure you want to import this backup? This will overwrite your current data.')) {
-          chrome.storage.sync.set(toImport, () => {
-            alert(lang === 'fa' ? 'پشتیبان با موفقیت وارد شد!' : 'Backup imported successfully!');
-            location.reload();
-          });
-        }
-      } catch (err) {
-        alert('Invalid backup file!');
+    } else {
+      const surpriseBtn = document.createElement('button');
+      surpriseBtn.textContent = 'منو سورپرایز کن!';
+      surpriseBtn.className = 'neumorph-btn';
+      surpriseBtn.id = 'surprise-btn-global';
+      surpriseBtn.style.marginLeft = '10px';
+      surpriseBtn.onclick = () => { if (window.surpriseUser) window.surpriseUser(); };
+      if (!document.getElementById('surprise-btn-global')) {
+        themeSwitchEl.parentNode.insertBefore(surpriseBtn, themeSwitchEl);
       }
-    };
-    reader.readAsText(file);
-  };
+    }
+  } else {
+    setTimeout(addSurpriseBtn, 200); // اگر نبود، دوباره تلاش کن
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1339,6 +1240,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
   }
+
+  // --- Pomodoro Section ---
+  renderPomodoro(document.getElementById('pomodoro-timer'));
+
+  // دکمه سورپرایز را کنار سوئیچر تم (themeSwitch) قرار بده (در انتهای DOMContentLoaded)
+  addSurpriseBtn();
 }); 
 
 // تابع ساخت SVG آیکون حذف مدرن
@@ -1357,4 +1264,52 @@ function createDeleteIcon() {
     <rect x="3.5" y="6.5" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
   `;
   return svg;
+}
+
+// --- Contact Manager: Simple renderContacts implementation ---
+function renderContacts() {
+  const list = document.getElementById('contacts-list');
+  if (!list) return;
+  list.innerHTML = '';
+  function renderList(contacts) {
+    if (!contacts || contacts.length === 0) {
+      const empty = document.createElement('div');
+      empty.style.color = '#aaa';
+      empty.textContent = 'هنوز مخاطبی ثبت نشده است.';
+      list.appendChild(empty);
+      return;
+    }
+    contacts.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'contact-item';
+      div.innerHTML = `<span>${c.name} (${c.unit})</span><span>${c.phone}</span>`;
+      // حذف مخاطب
+      const del = document.createElement('button');
+      del.className = 'delete-btn';
+      del.innerHTML = '✖';
+      del.onclick = () => {
+        contacts.splice(i, 1);
+        saveContacts(contacts, renderContacts);
+      };
+      div.appendChild(del);
+      list.appendChild(div);
+    });
+  }
+  function saveContacts(contacts, cb) {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+      chrome.storage.sync.set({ contacts }, cb);
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      if (cb) cb();
+    }
+  }
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+    chrome.storage.sync.get(['contacts'], (res) => {
+      renderList(res.contacts || []);
+    });
+  } else {
+    let contacts = [];
+    try { contacts = JSON.parse(localStorage.getItem('contacts') || '[]'); } catch (e) { contacts = []; }
+    renderList(contacts);
+  }
 } 
