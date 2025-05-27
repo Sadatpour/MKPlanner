@@ -82,7 +82,7 @@ body.dark {
   align-items: center;
   justify-content: center;
   min-width: 220px;
-  padding: 2px 16px;
+  padding: 15px;
   font-size: 1.05rem;
   background: inherit;
   box-shadow: 4px 4px 10px var(--color-shadow-dark), -4px -4px 10px var(--color-shadow-light);
@@ -449,7 +449,7 @@ body.dark .left-col.checklist-section > div {
 .center-col.bookmarks-section {
   grid-area: bookmarks;
   grid-row: 1 / span 3;
-  min-height: 320px;
+  min-height: 380px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -656,7 +656,7 @@ body.dark #project-list::-webkit-scrollbar, body.dark #target-list::-webkit-scro
 .score-section, .special-score-section {
   flex: 1 1 0;
   min-width: 0;
-  min-height: 120px;
+  max-height: 300px;
   height: 100%;
   aspect-ratio: 1/1;
   display: flex;
