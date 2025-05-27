@@ -18,11 +18,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       return true;
     } else {
       endTime = Date.now() + 25 * 60 * 1000;
-    chrome.storage.local.set({ pomodoroEnd: endTime }, () => {
-      chrome.alarms.create("pomodoro", { when: endTime });
-      sendResponse({ status: "started", endTime });
-    });
-    return true;
+      chrome.storage.local.set({ pomodoroEnd: endTime }, () => {
+        chrome.alarms.create("pomodoro", { when: endTime });
+        sendResponse({ status: "started", endTime });
+      });
+      return true;
     }
   }
   if (msg.type === "STOP_POMODORO") {
@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === "GET_POMODORO_END") {
     chrome.storage.local.get(["pomodoroEnd", "pomodoroRemain"], data => {
       if (data.pomodoroEnd) {
-      sendResponse({ endTime: data.pomodoroEnd });
+        sendResponse({ endTime: data.pomodoroEnd });
       } else if (typeof data.pomodoroRemain === 'number') {
         sendResponse({ endTime: Date.now() + data.pomodoroRemain * 1000 });
       } else {

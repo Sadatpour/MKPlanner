@@ -82,7 +82,7 @@ body.dark {
   align-items: center;
   justify-content: center;
   min-width: 220px;
-  padding: 10px 16px;
+  padding: 15px;
   font-size: 1.05rem;
   background: inherit;
   box-shadow: 4px 4px 10px var(--color-shadow-dark), -4px -4px 10px var(--color-shadow-light);
@@ -656,7 +656,7 @@ body.dark #project-list::-webkit-scrollbar, body.dark #target-list::-webkit-scro
 .score-section, .special-score-section {
   flex: 1 1 0;
   min-width: 0;
-  max-height: 320px;
+  max-height: 300px;
   height: 100%;
   aspect-ratio: 1/1;
   display: flex;
